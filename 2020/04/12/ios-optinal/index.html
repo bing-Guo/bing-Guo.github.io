@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。 Optional型態為可能是wrapped數值或是nil，以？做表示，unwrapped的方法有五種，分別為force、if、if let, default value, guard let。">
+<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。  Optional型態為可能是wrapped數值或是nil，以？做表示。 unwrapped的方法有五種，分別為force、if、if let, default value, guard let。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="說明Optional以及處理方式">
 <meta property="og:url" content="https://bing-guo.github.io/2020/04/12/ios-optinal/index.html">
 <meta property="og:site_name" content="Bing的隨筆紀錄">
-<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。 Optional型態為可能是wrapped數值或是nil，以？做表示，unwrapped的方法有五種，分別為force、if、if let, default value, guard let。">
+<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。  Optional型態為可能是wrapped數值或是nil，以？做表示。 unwrapped的方法有五種，分別為force、if、if let, default value, guard let。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-04-12T08:58:14.000Z">
-<meta property="article:modified_time" content="2020-04-13T05:39:14.694Z">
+<meta property="article:modified_time" content="2020-04-13T05:47:43.370Z">
 <meta property="article:author" content="Bing">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -301,9 +301,12 @@
 
       
         <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
-<p>Optional型態為可能是wrapped數值或是nil，以？做表示，unwrapped的方法有五種，分別為force、if、if let, default value, guard let。</p>
-<a id="more"></a>
+<ol>
+<li>Optional型態為可能是wrapped數值或是nil，以？做表示。</li>
+<li>unwrapped的方法有五種，分別為force、if、if let, default value, guard let。<a id="more"></a>
 
+</li>
+</ol>
 <h2 id="Optional型態"><a href="#Optional型態" class="headerlink" title="Optional型態"></a>Optional型態</h2><p>資料可能存在null，所以在程式語言中，都會把null加入考量，如果今天你讀一個變數，預期他是字串，但他其實是null，這時就會爆掉。在Bob大叔的「Clean code、錯誤處理」章節中有提到函式不要回傳null，會導致程式中會有很多檢查null的敘述，這無疑再增加自己的工作量，對呼叫者來說，若是有一處忘記檢查，麻煩就大了！</p>
 <p>所以Apple提出一個解決方法，就是所有變數都不能為nil(null的意思)，如果這變數可能會是nil，就得標示為Optional型態，以？來表示，？也表示種不確定性。Optional是為了讓語法更安全，減少在變數傳遞過程中，可能存在nil的不確定性，而且在編譯時期 (compile time) 就檢查對於 nil 的處理是否合法，以減少應用程式crash的機會。</p>
 <p>官方解釋Optional型態是「一種可能是wrapped value或是nil的型態」，實作方式是用enum，像這樣</p>
@@ -369,6 +372,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/13/ios-cocoapods/" rel="prev" title="Cocoapods使用pod install和pod updata的時機">
+                Cocoapods使用pod install和pod updata的時機 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -445,7 +452,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -458,7 +465,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
