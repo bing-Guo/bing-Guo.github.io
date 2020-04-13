@@ -79,11 +79,15 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bing的隨筆紀錄">
-<meta property="og:url" content="https://bing-guo.github.io/archives/2020/04/index.html">
+<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。 open跟public跟模組比較有關，fileprivate跟private比較常被拿來比較：  open: 可以被任何人存取，但其他module可以被繼承跟override public: 可以被任何人存取，但其他module不可以被繼承跟override internal: 預設的 fileprivate 在同一個檔案裡都可以使用，swift 4之後">
+<meta property="og:type" content="article">
+<meta property="og:title" content="說明Access Level">
+<meta property="og:url" content="https://bing-guo.github.io/2020/04/13/ios-access-level/index.html">
 <meta property="og:site_name" content="Bing的隨筆紀錄">
+<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。 open跟public跟模組比較有關，fileprivate跟private比較常被拿來比較：  open: 可以被任何人存取，但其他module可以被繼承跟override public: 可以被任何人存取，但其他module不可以被繼承跟override internal: 預設的 fileprivate 在同一個檔案裡都可以使用，swift 4之後">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-04-13T06:49:23.000Z">
+<meta property="article:modified_time" content="2020-04-13T08:50:25.803Z">
 <meta property="article:author" content="Bing">
 <meta property="article:tag" content="部落格">
 <meta property="article:tag" content=" iOS">
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://bing-Guo.github.io/archives/2020/04/"/>
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/13/ios-access-level/"/>
 
 
 
 
 
-  <title>Archive | Bing的隨筆紀錄</title>
+  <title>說明Access Level | Bing的隨筆紀錄</title>
   
 
 
@@ -143,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -217,259 +221,162 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-access-level/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing的隨筆紀錄">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">說明Access Level</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T14:49:23+08:00">
+                2020-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 6 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/04/13/ios-storyboard-xib/" itemprop="url">
-              
-                <span itemprop="name">ios_storyboard_xib</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-13T14:49:33+08:00"
-              content="2020-04-13" >
-          04-13
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/04/13/ios-access-level/" itemprop="url">
-              
-                <span itemprop="name">說明Access Level</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-13T14:49:23+08:00"
-              content="2020-04-13" >
-          04-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
+<p>open跟public跟模組比較有關，fileprivate跟private比較常被拿來比較：</p>
+<ul>
+<li>open: 可以被任何人存取，但其他module<em>可以</em>被繼承跟override</li>
+<li>public: 可以被任何人存取，但其他module<em>不可以</em>被繼承跟override</li>
+<li>internal: 預設的</li>
+<li>fileprivate 在同一個檔案裡都可以使用，swift 4之後使用機會不大</li>
+<li>private 同一個class或struct才能使用，swift 4之後extension內也可以存取<a id="more"></a>
 
-        
-        
+</li>
+</ul>
+<h1 id="Fileprivate-and-Private"><a href="#Fileprivate-and-Private" class="headerlink" title="Fileprivate and Private"></a>Fileprivate and Private</h1><p>Fileprivate: 在同一個檔案都可以取得</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class hello &#123;</span><br><span class="line">    fileprivate let value: String</span><br><span class="line">    </span><br><span class="line">    init(value: String) &#123;</span><br><span class="line">        self.value &#x3D; value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let hi &#x3D; hello(value: &quot;hello world&quot;)</span><br><span class="line">hi.value &#x2F;&#x2F; hello world</span><br></pre></td></tr></table></figure>
 
-        
+<p>Private: 最嚴謹的存取方式，只有在class或struct內部可以存取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class hello &#123;</span><br><span class="line">    private let value: String</span><br><span class="line">    </span><br><span class="line">    init(value: String) &#123;</span><br><span class="line">        self.value &#x3D; value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let hi &#x3D; hello(value: &quot;hello world&quot;)</span><br><span class="line">hi.value &#x2F;&#x2F; &#39;value&#39; is inaccessible due to &#39;private&#39; protection level</span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/04/13/ios-delegate/" itemprop="url">
-              
-                <span itemprop="name">說明Delegate</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-13T14:49:12+08:00"
-              content="2020-04-13" >
-          04-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+<p>因為在swift 4之前，private是無法在extension存取，所以會使用fileprivate，但在swift 4之後，變得可以了，所以fileprivate使用機會就不大了。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/04/13/ios-cocoapods/" itemprop="url">
-              
-                <span itemprop="name">Cocoapods使用pod install和pod updata的時機</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-13T13:49:46+08:00"
-              content="2020-04-13" >
-          04-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/04/12/ios-optinal/" itemprop="url">
-              
-                <span itemprop="name">說明Optional以及處理方式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-12T16:58:14+08:00"
-              content="2020-04-12" >
-          04-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/04/02/ios-app-lifecycle/" itemprop="url">
-              
-                <span itemprop="name">APP生命週期</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-02T11:13:07+08:00"
-              content="2020-04-02" >
-          04-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/13/ios-delegate/" rel="next" title="說明Delegate">
+                <i class="fa fa-chevron-left"></i> 說明Delegate
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/13/ios-storyboard-xib/" rel="prev" title="ios_storyboard_xib">
+                ios_storyboard_xib <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -477,6 +384,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -497,8 +408,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -549,6 +469,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fileprivate-and-Private"><span class="nav-number">1.</span> <span class="nav-text">Fileprivate and Private</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -682,6 +618,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
