@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。">
+<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。  Optional型態為可能是wrapped數值或是nil，以？做表示。 unwrapped的方法有五種，分別為force、if、if let, default value, guard let。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="說明Access Level">
-<meta property="og:url" content="https://bing-guo.github.io/2020/04/13/ios-access-level/index.html">
+<meta property="og:title" content="說明Optional以及處理方式">
+<meta property="og:url" content="https://bing-guo.github.io/2020/04/12/ios-optional/index.html">
 <meta property="og:site_name" content="Bing的隨筆紀錄">
-<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。">
+<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。  Optional型態為可能是wrapped數值或是nil，以？做表示。 unwrapped的方法有五種，分別為force、if、if let, default value, guard let。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-13T06:49:23.000Z">
-<meta property="article:modified_time" content="2020-04-14T02:44:24.899Z">
+<meta property="article:published_time" content="2020-04-12T08:58:14.000Z">
+<meta property="article:modified_time" content="2020-04-14T10:47:28.953Z">
 <meta property="article:author" content="Bing">
-<meta property="article:tag" content="部落格">
-<meta property="article:tag" content=" iOS">
-<meta property="article:tag" content=" 工程師">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/13/ios-access-level/"/>
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/12/ios-optional/"/>
 
 
 
 
 
-  <title>說明Access Level | Bing的隨筆紀錄</title>
+  <title>說明Optional以及處理方式 | Bing的隨筆紀錄</title>
   
 
 
@@ -235,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-access-level/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/12/ios-optional/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -252,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">說明Access Level</h1>
+          <h1 class="post-title" itemprop="name headline">說明Optional以及處理方式</h1>
         
 
         <div class="post-meta">
@@ -264,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T14:49:23+08:00">
-                2020-04-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-12T16:58:14+08:00">
+                2020-04-12
               </time>
             
 
@@ -303,25 +301,38 @@
 
       
         <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
-<a id="more"></a>
-
-<p>open跟public跟模組比較有關，fileprivate跟private比較常被拿來比較：</p>
-<ul>
-<li>open: 可以被任何人存取，但其他module<em>可以</em>被繼承跟override</li>
-<li>public: 可以被任何人存取，但其他module<em>不可以</em>被繼承跟override</li>
-<li>internal: 預設的</li>
-<li>fileprivate 在同一個檔案裡都可以使用，swift 4之後使用機會不大</li>
-<li>private 同一個class或struct才能使用，swift 4之後extension內也可以存取<!--more-->
+<ol>
+<li>Optional型態為可能是wrapped數值或是nil，以？做表示。</li>
+<li>unwrapped的方法有五種，分別為force、if、if let, default value, guard let。<a id="more"></a>
 
 </li>
-</ul>
-<h1 id="Fileprivate-and-Private"><a href="#Fileprivate-and-Private" class="headerlink" title="Fileprivate and Private"></a>Fileprivate and Private</h1><p>Fileprivate: 在同一個檔案都可以取得</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class hello &#123;</span><br><span class="line">    fileprivate let value: String</span><br><span class="line">    </span><br><span class="line">    init(value: String) &#123;</span><br><span class="line">        self.value &#x3D; value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let hi &#x3D; hello(value: &quot;hello world&quot;)</span><br><span class="line">hi.value &#x2F;&#x2F; hello world</span><br></pre></td></tr></table></figure>
+</ol>
+<h1 id="Optional型態"><a href="#Optional型態" class="headerlink" title="Optional型態"></a>Optional型態</h1><p>資料可能存在null，所以在程式語言中，都會把null加入考量，如果今天你讀一個變數，預期他是字串，但他其實是null，這時就會爆掉。在Bob大叔的「Clean code、錯誤處理」章節中有提到函式不要回傳null，會導致程式中會有很多檢查null的敘述，這無疑再增加自己的工作量，對呼叫者來說，若是有一處忘記檢查，麻煩就大了！</p>
+<p>所以Apple提出一個解決方法，就是所有變數都不能為nil(null的意思)，如果這變數可能會是nil，就得標示為Optional型態，以？來表示，？也表示種不確定性。Optional是為了讓語法更安全，減少在變數傳遞過程中，可能存在nil的不確定性，而且在編譯時期 (compile time) 就檢查對於 nil 的處理是否合法，以減少應用程式crash的機會。</p>
+<p>官方解釋Optional型態是「一種可能是wrapped value或是nil的型態」，實作方式是用enum，像這樣</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum Optional&lt;T&gt; &#123;</span><br><span class="line">	case some(Wrapped)</span><br><span class="line">	case none</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Private: 最嚴謹的存取方式，只有在class或struct內部可以存取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class hello &#123;</span><br><span class="line">    private let value: String</span><br><span class="line">    </span><br><span class="line">    init(value: String) &#123;</span><br><span class="line">        self.value &#x3D; value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let hi &#x3D; hello(value: &quot;hello world&quot;)</span><br><span class="line">hi.value &#x2F;&#x2F; &#39;value&#39; is inaccessible due to &#39;private&#39; protection level</span><br></pre></td></tr></table></figure>
+<h1 id="處理Optional的五種方式"><a href="#處理Optional的五種方式" class="headerlink" title="處理Optional的五種方式"></a>處理Optional的五種方式</h1><h2 id="方式一、強制unwrap"><a href="#方式一、強制unwrap" class="headerlink" title="方式一、強制unwrap"></a>方式一、強制unwrap</h2><p>使用！強制nwrap，如果拆開是nil，就麻煩大了，所以一定要確定是有值的，但還是盡量避免使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var girlfriend: String?</span><br><span class="line"></span><br><span class="line">print(girlfriend!) &#x2F;&#x2F; Fatal error: Unexpectedly found nil while unwrapping an Optional value: file Closure.playground</span><br></pre></td></tr></table></figure>
 
-<p>因為在swift 4之前，private是無法在extension存取，所以會使用fileprivate，但在swift 4之後，變得可以了，所以fileprivate使用機會就不大了。</p>
+<h2 id="方式二、if判斷"><a href="#方式二、if判斷" class="headerlink" title="方式二、if判斷"></a>方式二、if判斷</h2><p>用if判斷是不是nil，針對true or false做處理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var girlfriend: String?</span><br><span class="line"></span><br><span class="line">if girlfriend &#x3D;&#x3D; nil &#123;</span><br><span class="line">    print(&quot;😀😀😀😔😞😭&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式三、if-let-var-判斷"><a href="#方式三、if-let-var-判斷" class="headerlink" title="方式三、if let(var)判斷"></a>方式三、if let(var)判斷</h2><p>可以結果賦予到一個常數或變數上，可以方便在函式內部使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var girlfriend: String?</span><br><span class="line"></span><br><span class="line">girlfriend &#x3D; &quot;Lydia&quot;</span><br><span class="line"></span><br><span class="line">if let girl &#x3D; girlfriend &#123;</span><br><span class="line">    print(&quot;My girlfriend is \(girl).&quot;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    print(&quot;😀😀😀😔😞😭&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式四、預設值"><a href="#方式四、預設值" class="headerlink" title="方式四、預設值"></a>方式四、預設值</h2><p>若是nil，以預設值代替，通常開發人員也知道什麼時候可能會有nil，就可以給對應預設值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var girlfriend: String?</span><br><span class="line"></span><br><span class="line">girlfriend ?? &quot;My hands&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式五、guard-let-var"><a href="#方式五、guard-let-var" class="headerlink" title="方式五、guard let(var)"></a>方式五、guard let(var)</h2><p>guard守護的意思，像是把if let(var)賦予值的功能跟else結合，可以常用在檢查是否nil的情境，如果在函式可寫return返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var girlfriend: String?</span><br><span class="line"></span><br><span class="line">guard let girl &#x3D; girlfriend else &#123; return &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h1><ol>
+<li><a href="https://developer.apple.com/documentation/swift/optional" target="_blank" rel="noopener">Apple Developer - Optional</a></li>
+<li>Robert C. Martin(2013)。Clean code（戴于晉、博碩文化 譯）。博碩 出版。</li>
+<li><a href="https://www.appcoda.com.tw/swift-optional/" target="_blank" rel="noopener">Appcoda - 初學Swift：愛恨交織的 Optional</a></li>
+<li><a href="https://gradyzhuo.gitbooks.io/meetswifttutorial/content/Episode_1/Chapter_4.html" target="_blank" rel="noopener">gradyzhuo - 第四章 - 愛恨交織的 Optional - 操作篇</a></li>
+</ol>
 
       
     </div>
@@ -337,6 +348,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
 
       
       
@@ -346,8 +363,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/ios-delegate/" rel="next" title="說明Delegate">
-                <i class="fa fa-chevron-left"></i> 說明Delegate
+              <a href="/2020/04/02/ios-app-lifecycle/" rel="next" title="APP生命週期">
+                <i class="fa fa-chevron-left"></i> APP生命週期
               </a>
             
           </div>
@@ -356,8 +373,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/13/ios-gcd/" rel="prev" title="說明GCD">
-                說明GCD <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/13/ios-cocoapods/" rel="prev" title="Cocoapods使用pod install和pod updata的時機">
+                Cocoapods使用pod install和pod updata的時機 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -481,7 +498,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fileprivate-and-Private"><span class="nav-number">1.</span> <span class="nav-text">Fileprivate and Private</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional型態"><span class="nav-number">1.</span> <span class="nav-text">Optional型態</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#處理Optional的五種方式"><span class="nav-number">2.</span> <span class="nav-text">處理Optional的五種方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方式一、強制unwrap"><span class="nav-number">2.1.</span> <span class="nav-text">方式一、強制unwrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式二、if判斷"><span class="nav-number">2.2.</span> <span class="nav-text">方式二、if判斷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式三、if-let-var-判斷"><span class="nav-number">2.3.</span> <span class="nav-text">方式三、if let(var)判斷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式四、預設值"><span class="nav-number">2.4.</span> <span class="nav-text">方式四、預設值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式五、guard-let-var"><span class="nav-number">2.5.</span> <span class="nav-text">方式五、guard let(var)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考文件"><span class="nav-number">3.</span> <span class="nav-text">參考文件</span></a></li></ol></div>
             
 
           </div>

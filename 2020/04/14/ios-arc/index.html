@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/bing-Guo/RetainCycleDemo/master/ScreenShot/3.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/bing-Guo/RetainCycleDemo/master/ScreenShot/4.png">
 <meta property="article:published_time" content="2020-04-14T02:43:40.000Z">
-<meta property="article:modified_time" content="2020-04-14T06:30:41.337Z">
+<meta property="article:modified_time" content="2020-04-14T10:47:25.425Z">
 <meta property="article:author" content="Bing">
 <meta property="article:tag" content="部落格">
 <meta property="article:tag" content=" iOS">
@@ -358,7 +358,7 @@
 <li>subscription<strong>並不擁有</strong>user，若沒有了user，他就沒有存在的必要了<br>考慮到沒有存在的必要，所以不應該為nil，上面程式才會寫成let跟non-optional type</li>
 </ul>
 <h1 id="後語"><a href="#後語" class="headerlink" title="後語"></a>後語</h1><p>原文章後面還寫有closure的retain cycle問題，礙於實力，目前還看不是很懂，待後續實力增強再來紀錄。</p>
-<h3 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h3><ol>
+<h1 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h1><ol>
 <li><a href="https://www.raywenderlich.com/966538-arc-and-memory-management-in-swift" target="_blank" rel="noopener">raywenderlich - ARC and Memory Management in Swift</a></li>
 <li><a href="https://medium.com/zendesk-engineering/ios-identifying-memory-leaks-using-the-xcode-memory-graph-debugger-e84f097b9d15" target="_blank" rel="noopener">Pete Smith - iOS - Identifying Memory Leaks using the Xcode Memory Graph Debugger</a></li>
 </ol>
@@ -395,6 +395,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/15/ios-thread-safe/" rel="prev" title="說明thread-safe跟non-thread-safe">
+                說明thread-safe跟non-thread-safe <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -471,7 +475,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -517,7 +521,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#記憶體管理"><span class="nav-number">1.</span> <span class="nav-text">記憶體管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference-Counting"><span class="nav-number">2.</span> <span class="nav-text">Reference Counting</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift物件的生命週期"><span class="nav-number">3.</span> <span class="nav-text">Swift物件的生命週期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Retain-cycle"><span class="nav-number">4.</span> <span class="nav-text">Retain cycle</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#補充：偵測Retain-Cycle"><span class="nav-number">4.1.</span> <span class="nav-text">補充：偵測Retain Cycle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Weak-reference"><span class="nav-number">5.</span> <span class="nav-text">Weak reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unowned-reference"><span class="nav-number">6.</span> <span class="nav-text">Unowned reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後語"><span class="nav-number">7.</span> <span class="nav-text">後語</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#參考文件"><span class="nav-number">7.0.1.</span> <span class="nav-text">參考文件</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#記憶體管理"><span class="nav-number">1.</span> <span class="nav-text">記憶體管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference-Counting"><span class="nav-number">2.</span> <span class="nav-text">Reference Counting</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift物件的生命週期"><span class="nav-number">3.</span> <span class="nav-text">Swift物件的生命週期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Retain-cycle"><span class="nav-number">4.</span> <span class="nav-text">Retain cycle</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#補充：偵測Retain-Cycle"><span class="nav-number">4.1.</span> <span class="nav-text">補充：偵測Retain Cycle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Weak-reference"><span class="nav-number">5.</span> <span class="nav-text">Weak reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unowned-reference"><span class="nav-number">6.</span> <span class="nav-text">Unowned reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後語"><span class="nav-number">7.</span> <span class="nav-text">後語</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考文件"><span class="nav-number">8.</span> <span class="nav-text">參考文件</span></a></li></ol></div>
             
 
           </div>

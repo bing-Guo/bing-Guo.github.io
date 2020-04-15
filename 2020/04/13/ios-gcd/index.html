@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
+<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。 GCD(Grand Central Dispatch)是操作thread的API，DispatchQueue提供global queue跟自訂queue，訂定又可分為queue類型(Serial或Concurrent)跟同步性(Sync或Async)。Thread執行順序則跟Quality of service(QoS)有關係，依據優先順序分為userI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="說明GCD跟解釋thread-safe跟non-thread-safe">
+<meta property="og:title" content="說明GCD">
 <meta property="og:url" content="https://bing-guo.github.io/2020/04/13/ios-gcd/index.html">
 <meta property="og:site_name" content="Bing的隨筆紀錄">
+<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。 GCD(Grand Central Dispatch)是操作thread的API，DispatchQueue提供global queue跟自訂queue，訂定又可分為queue類型(Serial或Concurrent)跟同步性(Sync或Async)。Thread執行順序則跟Quality of service(QoS)有關係，依據優先順序分為userI">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-04-13T06:49:33.000Z">
-<meta property="article:modified_time" content="2020-04-13T10:50:44.312Z">
+<meta property="article:modified_time" content="2020-04-15T03:12:33.242Z">
 <meta property="article:author" content="Bing">
-<meta property="article:tag" content="部落格">
-<meta property="article:tag" content=" iOS">
-<meta property="article:tag" content=" 工程師">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>說明GCD跟解釋thread-safe跟non-thread-safe | Bing的隨筆紀錄</title>
+  <title>說明GCD | Bing的隨筆紀錄</title>
   
 
 
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">說明GCD跟解釋thread-safe跟non-thread-safe</h1>
+          <h1 class="post-title" itemprop="name headline">說明GCD</h1>
         
 
         <div class="post-meta">
@@ -300,7 +300,65 @@
       
 
       
-        
+        <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
+<p>GCD(Grand Central Dispatch)是操作thread的API，DispatchQueue提供global queue跟自訂queue，訂定又可分為queue類型(Serial或Concurrent)跟同步性(Sync或Async)。<br>Thread執行順序則跟Quality of service(QoS)有關係，依據優先順序分為userInteractive &gt; userInteractive &gt; default &gt; utility &gt; background &gt; unspecified</p>
+<a id="more"></a>
+
+<h1 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h1><p>GCD操作thread的語法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let queue &#x3D; DispatchQueue(label: &quot;myQueue&quot;, qos: .userInteractive, attributes: .concurrent)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>qos表示優先順序，預設default</li>
+<li>attributes表示concurrent或serial，預設serial</li>
+</ul>
+<h2 id="serialQueue-sync"><a href="#serialQueue-sync" class="headerlink" title="serialQueue + sync"></a>serialQueue + sync</h2><p>用於依序執行任務，不會開新的thread</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let serialQueue: DispatchQueue &#x3D; DispatchQueue(label: &quot;serialQueue&quot;)</span><br><span class="line"></span><br><span class="line">serialQueue.sync &#123;</span><br><span class="line">    for i in 1 ... 10 &#123;</span><br><span class="line">        print(&quot;🌞 \(i)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for j in 11 ... 20 &#123;</span><br><span class="line">    print(&quot;🌜 \(j)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="concurrentQueue-async"><a href="#concurrentQueue-async" class="headerlink" title="concurrentQueue + async"></a>concurrentQueue + async</h2><p>用於同時執行很多任務，會開新的thread</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">let concurrentQueue: DispatchQueue &#x3D; DispatchQueue(label: &quot;CorrentQueue&quot;, attributes: .concurrent)</span><br><span class="line"></span><br><span class="line">concurrentQueue.async &#123;</span><br><span class="line">    for i in 1 ... 10 &#123;</span><br><span class="line">        print(&quot;🌞 \(i)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">concurrentQueue.async &#123;</span><br><span class="line">    for j in 1 ... 10 &#123;</span><br><span class="line">        print(&quot;🌜 \(j)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">concurrentQueue.async &#123;</span><br><span class="line">    for k in 1 ... 10 &#123;</span><br><span class="line">        print(&quot;❄️ \(j)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="補充：解釋-Synchronous-amp-Asynchronous-的差別"><a href="#補充：解釋-Synchronous-amp-Asynchronous-的差別" class="headerlink" title="補充：解釋 Synchronous &amp; Asynchronous 的差別"></a>補充：解釋 Synchronous &amp; Asynchronous 的差別</h3><ul>
+<li>定義：Async跟Sync差別，發送需求後，需不需要等到完成才能可以執行其他事情。</li>
+<li>舉例：Async就好像你去買麥當勞，點好餐，他叫依號碼叫號(餐做好在叫你)，Sync就是你在那邊等到餐做完，拿完在走。</li>
+<li>實作：就是有沒有muti-thread</li>
+</ul>
+<h3 id="補充：解釋-Serial-amp-Concurrent-的差別"><a href="#補充：解釋-Serial-amp-Concurrent-的差別" class="headerlink" title="補充：解釋 Serial &amp; Concurrent 的差別"></a>補充：解釋 Serial &amp; Concurrent 的差別</h3><ul>
+<li>Serial Queues會照順序執行，並等到上一個任務結束才會開始(FIFO)，適合處理共享資源，確保存取是照順序的</li>
+<li>Concurrent Queues會照順序執行，但不必等到上一個任務結束才開始，因此每個任務的結束時間是不可預測的</li>
+</ul>
+<h3 id="補充：解釋-Concurrency-v-s-Serial-v-s-Parallellism"><a href="#補充：解釋-Concurrency-v-s-Serial-v-s-Parallellism" class="headerlink" title="補充：解釋 Concurrency v.s Serial v.s. Parallellism"></a>補充：解釋 Concurrency v.s Serial v.s. Parallellism</h3><p>以做菜來看，一個廚師要做菜</p>
+<ul>
+<li>serial就是，他要先洗菜、洗完在切菜、切完在準備醬料、準備完在燒水、燒完在煮麵、煮完面在準備碗盤、準備完在擺盤，這樣要等待上一個動作完成，才能執行下一個任務</li>
+<li>concurrency是，一個廚師，他還是可以在同時間完成洗菜、切菜、準備醬料…等等工作，他會在中間切換來切換去，不用等待上一個動作完成，才能做下一個動作</li>
+<li>Parallellism 比較像是同時有很多廚師在做差不多事情</li>
+</ul>
+<h1 id="Quality-of-service-QoS"><a href="#Quality-of-service-QoS" class="headerlink" title="Quality of service(QoS)"></a>Quality of service(QoS)</h1><p>依據優先順序分為userInteractive &gt; userInteractive &gt; default &gt; utility &gt; background &gt; unspecified，在async的情境下</p>
+<ul>
+<li>如果優先順序不同，則優先的會先被處理</li>
+<li>如果優先順序相同，則會輪流執行任務</li>
+<li>如果是main queue跟userInteractive相比，main queue會優先被處理</li>
+</ul>
+<h1 id="Global"><a href="#Global" class="headerlink" title="Global"></a>Global</h1><p>除了自己定義queue，也可以使用系統定義好了global queue，預設是concurrent queue，可以調用qos跟sync或async</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let queue &#x3D; DispatchQueue.global(qos: .background)</span><br><span class="line">queue.async&#123;</span><br><span class="line">    for i in 0...10&#123;</span><br><span class="line">        print(&quot;🌞 \(i)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>像是main queue，DispatchQueue也幫我們準備好了，main queue主要用來更新畫面UI</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DispatchQueue.main.async &#123;</span><br><span class="line">    &#x2F;&#x2F; Do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>補充說明，UI只能放在main執行續執行，如果你在background thread操作ui，因為priolity關係，你會不知道什麼時候才會更新ui，最好的方式就是，假設你在backgroup thread下載圖片，但把更新畫面的事情統一在main thread做</p>
+<h1 id="Dispatch-Group"><a href="#Dispatch-Group" class="headerlink" title="Dispatch Group"></a>Dispatch Group</h1><p>如果要等待一個以上的任務完成，接著在去執行其他事情，那就要用dispatch group作為等待機制，等一整個group完成一起執行其他任務。</p>
+<h2 id="任務非子執行緒"><a href="#任務非子執行緒" class="headerlink" title="任務非子執行緒"></a>任務非子執行緒</h2><p>queue.async加入group，並在最後結束時，呼叫group.notify來確保都完成後，在執行下一個任務。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">let group: DispatchGroup &#x3D; DispatchGroup()</span><br><span class="line"></span><br><span class="line">let queue1 &#x3D; DispatchQueue(label: &quot;queue1&quot;, attributes: .concurrent)</span><br><span class="line">queue1.async(group: group) &#123;</span><br><span class="line">    for i in 1 ... 10 &#123;</span><br><span class="line">        print(&quot;🌞 \(i)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let queue2 &#x3D; DispatchQueue(label: &quot;queue2&quot;, attributes: .concurrent)</span><br><span class="line">queue2.async(group: group) &#123;</span><br><span class="line">    for j in 11 ... 20 &#123;</span><br><span class="line">        print(&quot;🌜 \(j)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">group.notify(queue: DispatchQueue.main) &#123; </span><br><span class="line">    print(&quot;處理完成任務A和任務B...&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="WorkItem"><a href="#WorkItem" class="headerlink" title="WorkItem"></a>WorkItem</h1><p>DispatchWorkItem像是一個代碼區塊，可以在queue被調用，這樣寫法又更簡潔了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let queue: DispatchQueue &#x3D; DispatchQueue(label: &quot;myQueue&quot;)</span><br><span class="line"></span><br><span class="line">let workItem &#x3D; DispatchWorkItem &#123;</span><br><span class="line">    for i in 1 ... 10 &#123;</span><br><span class="line">        print(&quot;🌞 \(i)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">queue.async(execute: workItem)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; or</span><br><span class="line"></span><br><span class="line">queue.async &#123;</span><br><span class="line">    workItem.perform()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="任務是子執行緒"><a href="#任務是子執行緒" class="headerlink" title="任務是子執行緒"></a>任務是子執行緒</h2><p>因為任務又是另一個執行緒，比如說Call後端的API，需要明確指出group開始與結束時間點，所以用group.enter()跟group.leave()來紀錄每個queue開始跟結束，最後，呼叫group.notify來確保都完成後，在執行下一個任務。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">let group: DispatchGroup &#x3D; DispatchGroup()</span><br><span class="line">                </span><br><span class="line">let queue1 &#x3D; DispatchQueue(label: &quot;queue1&quot;, attributes: .concurrent)</span><br><span class="line">group.enter()</span><br><span class="line">queue1.async(group: group) &#123;</span><br><span class="line">	print(&quot;Call backend API&quot;)</span><br><span class="line">	group.leave()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let queue2 &#x3D; DispatchQueue(label: &quot;queue2&quot;, attributes: .concurrent)</span><br><span class="line">group.enter()</span><br><span class="line">queue2.async(group: group) &#123;</span><br><span class="line">	print(&quot;Call backend API&quot;)</span><br><span class="line">	group.leave()</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line">group.notify(queue: DispatchQueue.main) &#123;</span><br><span class="line">	print(&quot;完成所有 Call 後端 API 的動作...&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h1><ol>
+<li><a href="https://www.appcoda.com.tw/grand-central-dispatch/" target="_blank" rel="noopener">APPCODA - Swift 3學習指南：重新認識GCD應用</a></li>
+<li><a href="https://medium.com/@mikru168/ios-gcd%E5%A4%9A%E5%9F%B7%E8%A1%8C%E7%B7%92%E7%9A%84%E8%AA%AA%E6%98%8E%E8%88%87%E6%87%89%E7%94%A8-c69a68d01da1" target="_blank" rel="noopener">法蘭克的iOS世界 -【iOS - GCD 多執行緒的說明與應用】</a></li>
+<li><a href="https://kkc.github.io/2017/09/01/asynchronous-programming/" target="_blank" rel="noopener">淺談 Asynchronous Programming - Kakashi’s Blog</a></li>
+</ol>
+
       
     </div>
     
@@ -314,6 +372,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
       
 
       
@@ -388,8 +452,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -404,7 +477,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -440,6 +513,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Queue"><span class="nav-number">1.</span> <span class="nav-text">Queue</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#serialQueue-sync"><span class="nav-number">1.1.</span> <span class="nav-text">serialQueue + sync</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#concurrentQueue-async"><span class="nav-number">1.2.</span> <span class="nav-text">concurrentQueue + async</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#補充：解釋-Synchronous-amp-Asynchronous-的差別"><span class="nav-number">1.2.1.</span> <span class="nav-text">補充：解釋 Synchronous &amp; Asynchronous 的差別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#補充：解釋-Serial-amp-Concurrent-的差別"><span class="nav-number">1.2.2.</span> <span class="nav-text">補充：解釋 Serial &amp; Concurrent 的差別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#補充：解釋-Concurrency-v-s-Serial-v-s-Parallellism"><span class="nav-number">1.2.3.</span> <span class="nav-text">補充：解釋 Concurrency v.s Serial v.s. Parallellism</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quality-of-service-QoS"><span class="nav-number">2.</span> <span class="nav-text">Quality of service(QoS)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Global"><span class="nav-number">3.</span> <span class="nav-text">Global</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dispatch-Group"><span class="nav-number">4.</span> <span class="nav-text">Dispatch Group</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任務非子執行緒"><span class="nav-number">4.1.</span> <span class="nav-text">任務非子執行緒</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WorkItem"><span class="nav-number">5.</span> <span class="nav-text">WorkItem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任務是子執行緒"><span class="nav-number">5.1.</span> <span class="nav-text">任務是子執行緒</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考文件"><span class="nav-number">6.</span> <span class="nav-text">參考文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

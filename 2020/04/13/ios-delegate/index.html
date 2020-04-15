@@ -87,7 +87,7 @@
 <meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。 Delegate可用於兩物件傳遞資訊，是一種相依介面，不相依實作，所以只要抽換實作即可，達到開放封閉原則。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-04-13T06:49:12.000Z">
-<meta property="article:modified_time" content="2020-04-13T09:59:10.899Z">
+<meta property="article:modified_time" content="2020-04-14T10:47:23.880Z">
 <meta property="article:author" content="Bing">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -307,8 +307,8 @@
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Delegate在我最一開始學Swift，花了兩三天還是看不懂…，直到有一天需要他的時候就懂了💡💡💡</p>
 <h1 id="舉例"><a href="#舉例" class="headerlink" title="舉例"></a>舉例</h1><p>在新增頁面(A頁)，我需要新增一段文字，跟選擇一個圖示(假設是Emoji，所以下面會用String)，然後按下送出。但因為圖示有很多，我們把圖示列表放在(B頁)，所以流程就是在A頁輸入玩文字跟「點擊圖示」這按鈕，切到B頁選擇圖示，在把選擇的內容送回來給A頁，按下送出完成新增。</p>
 <p>以下又稱A物件(A頁)與B物件(B頁)，因為A頁和B頁可能是UIViewController或是UITableViewController…等</p>
-<h3 id="1-直接使用"><a href="#1-直接使用" class="headerlink" title="1.直接使用"></a>1.直接使用</h3><p>我們可以讓A物件跟B物件擁有彼此，在B物件得到使用者選的圖示後，直接<code>A.image = userChosenIcon</code>，但這樣高耦合，重複使用性差，今天要讓物件C也要使用B物件，總不能在把B物件內寫<code>C.image = userChosenIcon</code>。</p>
-<h3 id="2-Delegate方法"><a href="#2-Delegate方法" class="headerlink" title="2.Delegate方法"></a>2.Delegate方法</h3><p>比較好的方法，把實體物件改為介面，也就是Ａ或Ｃ改成一個協定（介面），只要符合這個協定的物件，Ｂ就能幫他傳遞圖示，協定大概會長這樣</p>
+<h2 id="1-直接使用"><a href="#1-直接使用" class="headerlink" title="1.直接使用"></a>1.直接使用</h2><p>我們可以讓A物件跟B物件擁有彼此，在B物件得到使用者選的圖示後，直接<code>A.image = userChosenIcon</code>，但這樣高耦合，重複使用性差，今天要讓物件C也要使用B物件，總不能在把B物件內寫<code>C.image = userChosenIcon</code>。</p>
+<h2 id="2-Delegate方法"><a href="#2-Delegate方法" class="headerlink" title="2.Delegate方法"></a>2.Delegate方法</h2><p>比較好的方法，把實體物件改為介面，也就是Ａ或Ｃ改成一個協定（介面），只要符合這個協定的物件，Ｂ就能幫他傳遞圖示，協定大概會長這樣</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protocal IconDelegate: NSObject&#123;</span><br><span class="line">	var getUserChosenIcon(icon: String)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>，對B來說不需要知道是A還是C，只要知道是一個遵守protocol的物件，大概會寫成這樣</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var delegate: IconDelegate?</span><br></pre></td></tr></table></figure>
@@ -321,7 +321,7 @@
 <p>因為A需要B幫忙讓使用者選圖示，A一定會擁有B，我們可以在A要轉頁面到B實作設定，大概會長這樣</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let storyboard &#x3D; UIStoryboard(name: &quot;Main&quot;, bundle: nil)</span><br><span class="line">        </span><br><span class="line">if let vc &#x3D; storyboard.instantiateViewController(identifier: &quot;B&quot;) as? ThumbnailCollectionViewController &#123;</span><br><span class="line">	vc.delegate &#x3D; self</span><br><span class="line">    self.navigationController?.pushViewController(vc, animated: true)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>這一步驟有時候會忘記，如果發現怎麼都沒有反應，也許是沒加這行。</p>
-<h3 id="後語"><a href="#後語" class="headerlink" title="後語"></a>後語</h3><p>所以回到前面所說的，對A來說，他不需要知道後面有B在幫忙他，他只要知道依據這個介面(protocol)，遵守定義好的函式，就可以達到想要的。<br>同樣對B來說，他也不知需要知道他在幫誰，只需要之後幫忙的對象遵守介面就好，所以對應到前面所說的「相依介面，不相依實作」，今天B要修改實作，對A來說一點影響都沒有，達到SOLID的開放封閉原則 Open-Closed Principle (OCP)。</p>
+<h1 id="後語"><a href="#後語" class="headerlink" title="後語"></a>後語</h1><p>所以回到前面所說的，對A來說，他不需要知道後面有B在幫忙他，他只要知道依據這個介面(protocol)，遵守定義好的函式，就可以達到想要的。<br>同樣對B來說，他也不知需要知道他在幫誰，只需要之後幫忙的對象遵守介面就好，所以對應到前面所說的「相依介面，不相依實作」，今天B要修改實作，對A來說一點影響都沒有，達到SOLID的開放封閉原則 Open-Closed Principle (OCP)。</p>
 
       
     </div>
@@ -441,7 +441,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -487,7 +487,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#舉例"><span class="nav-number">2.</span> <span class="nav-text">舉例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-直接使用"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.直接使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Delegate方法"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.Delegate方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後語"><span class="nav-number">2.0.3.</span> <span class="nav-text">後語</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#舉例"><span class="nav-number">2.</span> <span class="nav-text">舉例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-直接使用"><span class="nav-number">2.1.</span> <span class="nav-text">1.直接使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Delegate方法"><span class="nav-number">2.2.</span> <span class="nav-text">2.Delegate方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後語"><span class="nav-number">3.</span> <span class="nav-text">後語</span></a></li></ol></div>
             
 
           </div>
