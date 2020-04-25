@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS,Cocoapods," />
+  <meta name="keywords" content="sketch," />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。 除了要更新library的版本用update，其他都用install，然後記得把Podfile.lock commit到git。">
+<meta name="description" content="紀錄好用的Sketch Plugin。  sketch-measure sketch-iconfont Sketch-SF-UI-Font-Fixer Anima Artboard-manager Craft">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocoapods使用pod install和pod updata的時機">
-<meta property="og:url" content="https://bing-guo.github.io/2020/04/13/ios-cocoapods/index.html">
+<meta property="og:title" content="推薦的Sketch Plugin">
+<meta property="og:url" content="https://bing-guo.github.io/2020/04/25/sketch-plugin/index.html">
 <meta property="og:site_name" content="Bing的隨筆紀錄">
-<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。 除了要更新library的版本用update，其他都用install，然後記得把Podfile.lock commit到git。">
+<meta property="og:description" content="紀錄好用的Sketch Plugin。  sketch-measure sketch-iconfont Sketch-SF-UI-Font-Fixer Anima Artboard-manager Craft">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-13T05:49:46.000Z">
-<meta property="article:modified_time" content="2020-04-15T07:23:31.922Z">
+<meta property="article:published_time" content="2020-04-25T07:46:47.000Z">
+<meta property="article:modified_time" content="2020-04-25T08:16:50.927Z">
 <meta property="article:author" content="Bing">
-<meta property="article:tag" content="iOS">
-<meta property="article:tag" content="Cocoapods">
+<meta property="article:tag" content="sketch">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/13/ios-cocoapods/"/>
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/25/sketch-plugin/"/>
 
 
 
 
 
-  <title>Cocoapods使用pod install和pod updata的時機 | Bing的隨筆紀錄</title>
+  <title>推薦的Sketch Plugin | Bing的隨筆紀錄</title>
   
 
 
@@ -254,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-cocoapods/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/25/sketch-plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -271,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Cocoapods使用pod install和pod updata的時機</h1>
+          <h1 class="post-title" itemprop="name headline">推薦的Sketch Plugin</h1>
         
 
         <div class="post-meta">
@@ -283,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T13:49:46+08:00">
-                2020-04-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-25T15:46:47+08:00">
+                2020-04-25
               </time>
             
 
@@ -306,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%A9%A6%E8%80%83%E9%A1%8C/" itemprop="url" rel="index">
-                    <span itemprop="name">面試考題</span>
+                  <a href="/categories/UI-UX/" itemprop="url" rel="index">
+                    <span itemprop="name">UI/UX</span>
                   </a>
                 </span>
 
@@ -343,24 +342,23 @@
       
 
       
-        <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
-<p>除了要更新library的版本用update，其他都用install，然後記得<em>把Podfile.lock commit到git</em>。</p>
-<a id="more"></a>
+        <p>紀錄好用的Sketch Plugin。</p>
+<ol>
+<li>sketch-measure</li>
+<li>sketch-iconfont</li>
+<li>Sketch-SF-UI-Font-Fixer</li>
+<li>Anima</li>
+<li>Artboard-manager</li>
+<li>Craft<a id="more"></a>
 
-<h1 id="Podfile和Podfile-lock"><a href="#Podfile和Podfile-lock" class="headerlink" title="Podfile和Podfile.lock"></a>Podfile和Podfile.lock</h1><p>Podfile是描述要裝的libraries(或稱pods)。<br>Podfile.lock是用來追蹤每個pod安裝的版本，第一次執行<code>pod install</code>會產生。</p>
-<h1 id="Pods-Directory"><a href="#Pods-Directory" class="headerlink" title="Pods Directory"></a>Pods Directory</h1><p>在執行完pod install會產生Pods資料夾，裡面放關於每個pod的資訊，你可以選擇把整個Pods都納入Git，各有優點</p>
-<ul>
-<li>納入的好處是，Clone下來就可以直接運行專案，不用再執行pod install下載pods，也可以確保每個pod是不是一致。</li>
-<li>不納入的好處是，你的程式佔用空間小，合併不同版本的pod也不會有衝突<br>但不管是哪一種，都要保持Podfile跟Podfile.lock一致！</li>
-</ul>
-<h1 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h1><ul>
-<li>pod install會根據Podfile.lock的版本去下載，<em>不會檢查有無版本更新</em>。</li>
-<li>pod update會根據Podfile描述，盡可能把library版本更新到最新，不會受到Podfile.lock限制</li>
-<li>簡單說，要更新library的版本用update，其他都用install，然後記得<em>把Podfile.lock commit到git</em>。</li>
-</ul>
-<h1 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h1><ol>
-<li><a href="http://guides.cocoapods.org/using/using-cocoapods.html" target="_blank" rel="noopener">Using CocoaPods</a></li>
+</li>
 </ol>
+<h1 id="Sketch-measure"><a href="#Sketch-measure" class="headerlink" title="Sketch-measure"></a>Sketch-measure</h1><p><a href="https://github.com/utom/sketch-measure" target="_blank" rel="noopener">GitHub - utom/sketch-measure</a><br>用來測量圖層的長寬，可用來打草稿，工程師接手後也能清楚知道寬距、間距要怎麼設置。</p>
+<h1 id="Sketch-iconfont"><a href="#Sketch-iconfont" class="headerlink" title="Sketch-iconfont"></a>Sketch-iconfont</h1><p><a href="https://github.com/keremciu/sketch-iconfont" target="_blank" rel="noopener">GitHub - keremciu/sketch-iconfont</a><br>管理多種icon字型，可以快速搜尋和插入。</p>
+<h1 id="Sketch-SF-UI-Font-Fixer"><a href="#Sketch-SF-UI-Font-Fixer" class="headerlink" title="Sketch-SF-UI-Font-Fixer"></a>Sketch-SF-UI-Font-Fixer</h1><p><a href="https://github.com/puretears/Sketch-SF-UI-Font-Fixer" target="_blank" rel="noopener">GitHub - puretears/Sketch-SF-UI-Font-Fixer</a><br>可以調整字體的間距，這是根據Apple iOS人機手冊(<a href="https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/" target="_blank" rel="noopener">Typography - Visual Design - iOS - Human Interface Guidelines - Apple Developer</a>)中所提出的字體在不同大小需要擁有不同的間距，同樣的在Sketch設計中也需要符合這樣的條件，設計跟開發出來才會有一樣的效果。<br>原作者已經停止更新，這裡下載的是<a href="https://boxueio.com/" target="_blank" rel="noopener">泊學</a>作者的版本，已經更新到iOS13的版本，另外，他們的影片真的很優秀，真心推薦😀</p>
+<h1 id="Anima"><a href="#Anima" class="headerlink" title="Anima"></a>Anima</h1><p><a href="https://www.animaapp.com/" target="_blank" rel="noopener">Anima - Design to code, automated.</a><br>可以在Sketch中做出跟auto layout相同的效果，不僅在設計中方便，在變換不同Artboard的Driver也能適應。</p>
+<h1 id="Artboard-manager"><a href="#Artboard-manager" class="headerlink" title="Artboard-manager"></a>Artboard-manager</h1><p><a href="https://github.com/bomberstudios/artboard-manager" target="_blank" rel="noopener">GitHub - bomberstudios/artboard-manager</a><br>便利且迅速排版多個Artboard</p>
+<h1 id="Craft"><a href="#Craft" class="headerlink" title="Craft"></a>Craft</h1><p><a href="https://www.invisionapp.com/craft" target="_blank" rel="noopener">Craft | InVision</a><br>它的功能實在太強大了，我目前只拿來管理字型、icon、顏色等等，可以儲存在Cloud上，其他專案也方便使用，其他等有用到在做分享。</p>
 
       
     </div>
@@ -378,9 +376,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
-          
-            <a href="/tags/Cocoapods/" rel="tag"># Cocoapods</a>
+            <a href="/tags/sketch/" rel="tag"># sketch</a>
           
         </div>
       
@@ -393,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/12/ios-optional/" rel="next" title="說明Optional以及處理方式">
-                <i class="fa fa-chevron-left"></i> 說明Optional以及處理方式
+              <a href="/2020/04/25/ios-unit-testing/" rel="next" title="ios_unit_testing">
+                <i class="fa fa-chevron-left"></i> ios_unit_testing
               </a>
             
           </div>
@@ -402,10 +398,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/13/ios-delegate/" rel="prev" title="說明Delegate">
-                說明Delegate <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -537,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Podfile和Podfile-lock"><span class="nav-number">1.</span> <span class="nav-text">Podfile和Podfile.lock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pods-Directory"><span class="nav-number">2.</span> <span class="nav-text">Pods Directory</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用時機"><span class="nav-number">3.</span> <span class="nav-text">使用時機</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考文件"><span class="nav-number">4.</span> <span class="nav-text">參考文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sketch-measure"><span class="nav-number">1.</span> <span class="nav-text">Sketch-measure</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sketch-iconfont"><span class="nav-number">2.</span> <span class="nav-text">Sketch-iconfont</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sketch-SF-UI-Font-Fixer"><span class="nav-number">3.</span> <span class="nav-text">Sketch-SF-UI-Font-Fixer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anima"><span class="nav-number">4.</span> <span class="nav-text">Anima</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Artboard-manager"><span class="nav-number">5.</span> <span class="nav-text">Artboard-manager</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Craft"><span class="nav-number">6.</span> <span class="nav-text">Craft</span></a></li></ol></div>
             
 
           </div>
