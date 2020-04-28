@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,17 +79,15 @@
 
 
 
-<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。 Delegate可用於兩物件傳遞資訊，是一種相依介面，不相依實作，所以只要抽換實作即可，達到開放封閉原則。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="說明Delegate">
-<meta property="og:url" content="https://bing-guo.github.io/2020/04/13/ios-delegate/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello Bing">
+<meta property="og:url" content="https://bing-guo.github.io/page/3/index.html">
 <meta property="og:site_name" content="Hello Bing">
-<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。 Delegate可用於兩物件傳遞資訊，是一種相依介面，不相依實作，所以只要抽換實作即可，達到開放封閉原則。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-13T06:49:12.000Z">
-<meta property="article:modified_time" content="2020-04-15T07:23:38.931Z">
 <meta property="article:author" content="Bing">
-<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="部落格">
+<meta property="article:tag" content=" iOS">
+<meta property="article:tag" content=" 工程師">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/13/ios-delegate/"/>
+  <link rel="canonical" href="https://bing-Guo.github.io/page/3/"/>
 
 
 
 
 
-  <title>說明Delegate | Hello Bing</title>
+  <title>Hello Bing</title>
   
 
 
@@ -154,7 +152,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +246,10 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+    	
+		   
 
   
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-delegate/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/02/ios-app-lifecycle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -279,7 +279,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">說明Delegate</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/02/ios-app-lifecycle/" itemprop="url">APP生命週期</a></h1>
         
 
         <div class="post-meta">
@@ -291,8 +293,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T14:49:12+08:00">
-                2020-04-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-02T11:13:07+08:00">
+                2020-04-02
               </time>
             
 
@@ -332,9 +334,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/13/ios-delegate/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/02/ios-app-lifecycle/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/13/ios-delegate/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/02/ios-app-lifecycle/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,29 +364,19 @@
       
 
       
-        <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
-<p>Delegate可用於兩物件傳遞資訊，是一種相依介面，不相依實作，所以只要抽換實作即可，達到開放封閉原則。</p>
-<a id="more"></a>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Delegate在我最一開始學Swift，花了兩三天還是看不懂…，直到有一天需要他的時候就懂了💡💡💡</p>
-<h1 id="舉例"><a href="#舉例" class="headerlink" title="舉例"></a>舉例</h1><p>在新增頁面(A頁)，我需要新增一段文字，跟選擇一個圖示(假設是Emoji，所以下面會用String)，然後按下送出。但因為圖示有很多，我們把圖示列表放在(B頁)，所以流程就是在A頁輸入玩文字跟「點擊圖示」這按鈕，切到B頁選擇圖示，在把選擇的內容送回來給A頁，按下送出完成新增。</p>
-<p>以下又稱A物件(A頁)與B物件(B頁)，因為A頁和B頁可能是UIViewController或是UITableViewController…等</p>
-<h2 id="1-直接使用"><a href="#1-直接使用" class="headerlink" title="1.直接使用"></a>1.直接使用</h2><p>我們可以讓A物件跟B物件擁有彼此，在B物件得到使用者選的圖示後，直接<code>A.image = userChosenIcon</code>，但這樣高耦合，重複使用性差，今天要讓物件C也要使用B物件，總不能在把B物件內寫<code>C.image = userChosenIcon</code>。</p>
-<h2 id="2-Delegate方法"><a href="#2-Delegate方法" class="headerlink" title="2.Delegate方法"></a>2.Delegate方法</h2><p>比較好的方法，把實體物件改為介面，也就是Ａ或Ｃ改成一個協定（介面），只要符合這個協定的物件，Ｂ就能幫他傳遞圖示，協定大概會長這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protocal IconDelegate: NSObject&#123;</span><br><span class="line">	var getUserChosenIcon(icon: String)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>，對B來說不需要知道是A還是C，只要知道是一個遵守protocol的物件，大概會寫成這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var delegate: IconDelegate?</span><br></pre></td></tr></table></figure>
-<p>當B要回傳回去給A時，一定會有一個事件，可以能是點擊Button或是點擊Cell，總之，會有一個事件讓B回傳，事件那段程式加上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delegate.getUserChosenIcon(userChosenIcon)</span><br></pre></td></tr></table></figure>
-<p>剛剛說了delegate是符合IconDelegate的物件，所以可以使用getUserChosenIcon合理，這裡說的delegate其實就是A，因為A遵守IconDelegate，要怎麼遵守？大概是這樣寫</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extension A: IconDelegate &#123;</span><br><span class="line">	func getUserChosenIcon(icon: String) &#123;</span><br><span class="line">		print(&quot;user choose: \(icon)&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>還有一件事情很重要，要把B的delegate指向A，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vc.delegate &#x3D; self</span><br></pre></td></tr></table></figure>
-<p>因為A需要B幫忙讓使用者選圖示，A一定會擁有B，我們可以在A要轉頁面到B實作設定，大概會長這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let storyboard &#x3D; UIStoryboard(name: &quot;Main&quot;, bundle: nil)</span><br><span class="line">        </span><br><span class="line">if let vc &#x3D; storyboard.instantiateViewController(identifier: &quot;B&quot;) as? ThumbnailCollectionViewController &#123;</span><br><span class="line">	vc.delegate &#x3D; self</span><br><span class="line">    self.navigationController?.pushViewController(vc, animated: true)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>這一步驟有時候會忘記，如果發現怎麼都沒有反應，也許是沒加這行。</p>
-<h1 id="後語"><a href="#後語" class="headerlink" title="後語"></a>後語</h1><p>所以回到前面所說的，對A來說，他不需要知道後面有B在幫忙他，他只要知道依據這個介面(protocol)，遵守定義好的函式，就可以達到想要的。<br>同樣對B來說，他也不知需要知道他在幫誰，只需要之後幫忙的對象遵守介面就好，所以對應到前面所說的「相依介面，不相依實作」，今天B要修改實作，對A來說一點影響都沒有，達到SOLID的開放封閉原則 Open-Closed Principle (OCP)。</p>
-
+        
+          <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
+<ol>
+<li>iOS13版本以上的，UIKit是使用UISceneDelegate物件來管理生命週期，iOS13以下是以AppDelegate物件來管理。</li>
+<li>分為四個狀態，簡單順序可以這樣排，unattached &gt; inactive &gt; active &gt; background &gt; suspended。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/02/ios-app-lifecycle/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -399,40 +391,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2020/04/13/ios-cocoapods/" rel="next" title="Cocoapods使用pod install和pod updata的時機">
-                <i class="fa fa-chevron-left"></i> Cocoapods使用pod install和pod updata的時機
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/13/ios-access-level/" rel="prev" title="說明Access Level">
-                說明Access Level <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -442,11 +408,15 @@
   </article>
 
 
+		
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -457,20 +427,6 @@
           
           <div style="">
             
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    </div>
-
-  
-
-
 
           </div>
         </div>
@@ -492,17 +448,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -562,22 +509,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#舉例"><span class="nav-number">2.</span> <span class="nav-text">舉例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-直接使用"><span class="nav-number">2.1.</span> <span class="nav-text">1.直接使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Delegate方法"><span class="nav-number">2.2.</span> <span class="nav-text">2.Delegate方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後語"><span class="nav-number">3.</span> <span class="nav-text">後語</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -711,10 +642,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
@@ -732,18 +659,6 @@
       <script id="dsq-count-scr" src="https://myBlog.disqus.com/count.js" async></script>
     
 
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://bing-guo.github.io/2020/04/13/ios-delegate/';
-          this.page.identifier = '2020/04/13/ios-delegate/';
-          this.page.title = '說明Delegate';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://myBlog.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
     
 
   

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="iOS,Objective-C," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。 Delegate可用於兩物件傳遞資訊，是一種相依介面，不相依實作，所以只要抽換實作即可，達到開放封閉原則。">
+<meta name="description" content="這系列筆記，替自己紀錄iOS面試常問考題。 在OC中，copy對於Immutable類型是copy by reference，對Mutable類型是copy by value；mutableCopy則都是copy by value。在Swift中則是採用copy on write作法，最一開始複製為copy by reference，有修改就會自動建立新的記憶體位置。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="說明Delegate">
-<meta property="og:url" content="https://bing-guo.github.io/2020/04/13/ios-delegate/index.html">
+<meta property="og:title" content="說明Copy的用途，補充說明Swift中的Copy">
+<meta property="og:url" content="https://bing-guo.github.io/2020/04/28/ios-objc-copy/index.html">
 <meta property="og:site_name" content="Hello Bing">
-<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。 Delegate可用於兩物件傳遞資訊，是一種相依介面，不相依實作，所以只要抽換實作即可，達到開放封閉原則。">
+<meta property="og:description" content="這系列筆記，替自己紀錄iOS面試常問考題。 在OC中，copy對於Immutable類型是copy by reference，對Mutable類型是copy by value；mutableCopy則都是copy by value。在Swift中則是採用copy on write作法，最一開始複製為copy by reference，有修改就會自動建立新的記憶體位置。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-13T06:49:12.000Z">
-<meta property="article:modified_time" content="2020-04-15T07:23:38.931Z">
+<meta property="article:published_time" content="2020-04-28T04:39:33.000Z">
+<meta property="article:modified_time" content="2020-04-28T06:18:19.903Z">
 <meta property="article:author" content="Bing">
 <meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Objective-C">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/13/ios-delegate/"/>
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/28/ios-objc-copy/"/>
 
 
 
 
 
-  <title>說明Delegate | Hello Bing</title>
+  <title>說明Copy的用途，補充說明Swift中的Copy | Hello Bing</title>
   
 
 
@@ -262,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-delegate/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/28/ios-objc-copy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -279,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">說明Delegate</h1>
+          <h1 class="post-title" itemprop="name headline">說明Copy的用途，補充說明Swift中的Copy</h1>
         
 
         <div class="post-meta">
@@ -291,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T14:49:12+08:00">
-                2020-04-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-28T12:39:33+08:00">
+                2020-04-28
               </time>
             
 
@@ -332,9 +333,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/13/ios-delegate/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/28/ios-objc-copy/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/13/ios-delegate/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/28/ios-objc-copy/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -363,27 +364,27 @@
 
       
         <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
-<p>Delegate可用於兩物件傳遞資訊，是一種相依介面，不相依實作，所以只要抽換實作即可，達到開放封閉原則。</p>
+<p>在OC中，copy對於Immutable類型是copy by reference，對Mutable類型是copy by value；mutableCopy則都是copy by value。<br>在Swift中則是採用copy on write作法，最一開始複製為copy by reference，有修改就會自動建立新的記憶體位置。</p>
 <a id="more"></a>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Delegate在我最一開始學Swift，花了兩三天還是看不懂…，直到有一天需要他的時候就懂了💡💡💡</p>
-<h1 id="舉例"><a href="#舉例" class="headerlink" title="舉例"></a>舉例</h1><p>在新增頁面(A頁)，我需要新增一段文字，跟選擇一個圖示(假設是Emoji，所以下面會用String)，然後按下送出。但因為圖示有很多，我們把圖示列表放在(B頁)，所以流程就是在A頁輸入玩文字跟「點擊圖示」這按鈕，切到B頁選擇圖示，在把選擇的內容送回來給A頁，按下送出完成新增。</p>
-<p>以下又稱A物件(A頁)與B物件(B頁)，因為A頁和B頁可能是UIViewController或是UITableViewController…等</p>
-<h2 id="1-直接使用"><a href="#1-直接使用" class="headerlink" title="1.直接使用"></a>1.直接使用</h2><p>我們可以讓A物件跟B物件擁有彼此，在B物件得到使用者選的圖示後，直接<code>A.image = userChosenIcon</code>，但這樣高耦合，重複使用性差，今天要讓物件C也要使用B物件，總不能在把B物件內寫<code>C.image = userChosenIcon</code>。</p>
-<h2 id="2-Delegate方法"><a href="#2-Delegate方法" class="headerlink" title="2.Delegate方法"></a>2.Delegate方法</h2><p>比較好的方法，把實體物件改為介面，也就是Ａ或Ｃ改成一個協定（介面），只要符合這個協定的物件，Ｂ就能幫他傳遞圖示，協定大概會長這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protocal IconDelegate: NSObject&#123;</span><br><span class="line">	var getUserChosenIcon(icon: String)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>，對B來說不需要知道是A還是C，只要知道是一個遵守protocol的物件，大概會寫成這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var delegate: IconDelegate?</span><br></pre></td></tr></table></figure>
-<p>當B要回傳回去給A時，一定會有一個事件，可以能是點擊Button或是點擊Cell，總之，會有一個事件讓B回傳，事件那段程式加上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delegate.getUserChosenIcon(userChosenIcon)</span><br></pre></td></tr></table></figure>
-<p>剛剛說了delegate是符合IconDelegate的物件，所以可以使用getUserChosenIcon合理，這裡說的delegate其實就是A，因為A遵守IconDelegate，要怎麼遵守？大概是這樣寫</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extension A: IconDelegate &#123;</span><br><span class="line">	func getUserChosenIcon(icon: String) &#123;</span><br><span class="line">		print(&quot;user choose: \(icon)&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>還有一件事情很重要，要把B的delegate指向A，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vc.delegate &#x3D; self</span><br></pre></td></tr></table></figure>
-<p>因為A需要B幫忙讓使用者選圖示，A一定會擁有B，我們可以在A要轉頁面到B實作設定，大概會長這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let storyboard &#x3D; UIStoryboard(name: &quot;Main&quot;, bundle: nil)</span><br><span class="line">        </span><br><span class="line">if let vc &#x3D; storyboard.instantiateViewController(identifier: &quot;B&quot;) as? ThumbnailCollectionViewController &#123;</span><br><span class="line">	vc.delegate &#x3D; self</span><br><span class="line">    self.navigationController?.pushViewController(vc, animated: true)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>這一步驟有時候會忘記，如果發現怎麼都沒有反應，也許是沒加這行。</p>
-<h1 id="後語"><a href="#後語" class="headerlink" title="後語"></a>後語</h1><p>所以回到前面所說的，對A來說，他不需要知道後面有B在幫忙他，他只要知道依據這個介面(protocol)，遵守定義好的函式，就可以達到想要的。<br>同樣對B來說，他也不知需要知道他在幫誰，只需要之後幫忙的對象遵守介面就好，所以對應到前面所說的「相依介面，不相依實作」，今天B要修改實作，對A來說一點影響都沒有，達到SOLID的開放封閉原則 Open-Closed Principle (OCP)。</p>
+<h1 id="OC中的Copy"><a href="#OC中的Copy" class="headerlink" title="OC中的Copy"></a>OC中的Copy</h1><p>Copy又分為copy跟mutableCopy，可以嘗試替換成MutableCopy，會發現使用copy會得到相同記憶體位置，使用mutableCopy則會不同的位置，所以，可以視為copy by reference(淺拷貝)，mutableCopy為copy by value(深考累)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSString *a &#x3D; @&quot;hello world.&quot;;</span><br><span class="line">NSString *b &#x3D; [a copy]; &#x2F;&#x2F; or MutableCopy</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;a &#x3D; %p&quot;, a);</span><br><span class="line">NSLog(@&quot;b &#x3D; %p&quot;, b);</span><br></pre></td></tr></table></figure>
+
+<p>另外，還有一點面試也很愛考，從下面程式碼，建立了a並都設為NSMutableString，接著copy給b，會發現b的結果為NSString(Xcode中可以設定Breakpoint查看)，所以在執行的時候試圖append會發生錯誤，所以，當Mutable物件在進行copy的時候，會轉換成Immutable；相對的，如果想要得到Mutable的結果，就使用mutableCopy。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSMutableString *a &#x3D; [[NSMutableString alloc] initWithString: @&quot;hello &quot;];</span><br><span class="line">NSMutableString *b &#x3D; [a copy];</span><br><span class="line"></span><br><span class="line">[a appendFormat: @&quot;world.&quot;];</span><br><span class="line">[b appendFormat: @&quot;world.&quot;]; &#x2F;&#x2F; Error</span><br></pre></td></tr></table></figure>
+
+<p>最後補充，在@property中也可以設定copy，像這樣<code>@property (nonatomic, copy) NSString *variableName;</code>，所以考題大概會這樣考，最後test.array的型態為NSArray還是NSMutableArray，答案是NSArray，因為儘管設為NSMutableArray，經過copy還是會變成Immutable，如果我們修改array的數值，也不會影響到test.array的內容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@interface Test : NSObject</span><br><span class="line">@property (nonatomic, copy) NSMutableArray* array;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Test</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        NSMutableArray* array &#x3D; [[NSMutableArray alloc] initWithObjects:@&quot;a&quot;, @&quot;b&quot;, @&quot;c&quot;, nil];</span><br><span class="line">        Test* test &#x3D; [[Test alloc] init];</span><br><span class="line">        test.array &#x3D; array;  &#x2F;&#x2F; (1)</span><br><span class="line">        NSLog(@&quot;%@&quot;, NSStringFromClass([test.array class]));</span><br><span class="line">        </span><br><span class="line">        NSLog(@&quot;%@&quot;, test.array); &#x2F;&#x2F; a, b, c</span><br><span class="line">        [array addObject:@&quot;d&quot;];</span><br><span class="line">        NSLog(@&quot;%@&quot;, test.array); &#x2F;&#x2F; a, b, c</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>copy對於Immutable類型是copy by reference，對Mutable類型是copy by value；mutableCopy則都是copy by value。</p>
+<h1 id="Swift中的Copy"><a href="#Swift中的Copy" class="headerlink" title="Swift中的Copy"></a>Swift中的Copy</h1><p>在Swift當中，copy一個array到copyA，並對array進行修改，這行為是不會修改copyA的，代表這是copy by value。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [1,2,3,4,5]</span><br><span class="line">var copyA &#x3D; array</span><br><span class="line"></span><br><span class="line">array.append(6) &#x2F;&#x2F; now array &#x3D; [1, 2, 3, 4, 5, 6]</span><br><span class="line">copyA &#x2F;&#x2F; now copyA &#x3D; [1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+<p>但我們可以列印出記憶體位置，來看看過程中的變化，撰寫getBufferAddress方法來列印出陣列的記憶體位置，可以發現在複製後，array跟copyA是一樣的記憶體位置，只有在當我們修改array的時候，才執行真正的複製，這個叫做copy on write的方式，正是因為swift中有實作這功能，在複製大量數據時能保有良好的記憶體管理。這部分官方文件有提到<a href="https://github.com/apple/swift/blob/master/docs/OptimizationTips.rst#advice-use-copy-on-write-semantics-for-large-values" target="_blank" rel="noopener">swift/OptimizationTips.rst at master · apple/swift · GitHub</a>，但對我目前來說還太難了，只好先記錄😂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func getBufferAddress&lt;T&gt;(_ array: [T]) -&gt; String &#123;</span><br><span class="line">    return array.withUnsafeBufferPointer &#123; buffer in</span><br><span class="line">        return String(describing: buffer.baseAddress)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var array &#x3D; [1,2,3,4,5]</span><br><span class="line">var copyA &#x3D; array</span><br><span class="line"></span><br><span class="line">getBufferAddress(array) &#x2F;&#x2F; 0x0000600002ff5b00</span><br><span class="line">getBufferAddress(copyA) &#x2F;&#x2F; 0x0000600002ff5b00</span><br><span class="line"></span><br><span class="line">array.append(6) &#x2F;&#x2F; now array &#x3D; [1, 2, 3, 4, 5, 6]</span><br><span class="line">copyA &#x2F;&#x2F; now copyA &#x3D; [1, 2, 3, 4, 5]</span><br><span class="line">getBufferAddress(array) &#x2F;&#x2F; 0x00006000027e29b0</span><br><span class="line">getBufferAddress(copyA) &#x2F;&#x2F; 0x0000600002ff5b00</span><br></pre></td></tr></table></figure>
+
+<h1 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h1><ol>
+<li><a href="https://boxueio.com/series/collection-types/ebook/125" target="_blank" rel="noopener">理解Array和NSArray的差异 - 泊学 - 一个全栈工程师的自学网站</a></li>
+</ol>
 
       
     </div>
@@ -403,6 +404,8 @@
           
             <a href="/tags/iOS/" rel="tag"># iOS</a>
           
+            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
         </div>
       
 
@@ -414,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/ios-cocoapods/" rel="next" title="Cocoapods使用pod install和pod updata的時機">
-                <i class="fa fa-chevron-left"></i> Cocoapods使用pod install和pod updata的時機
+              <a href="/2020/04/28/ios-objc-nsarray/" rel="next" title="說明NSArray和NSMutableArray差別，補充說明Swift跟OC差異">
+                <i class="fa fa-chevron-left"></i> 說明NSArray和NSMutableArray差別，補充說明Swift跟OC差異
               </a>
             
           </div>
@@ -423,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/13/ios-access-level/" rel="prev" title="說明Access Level">
-                說明Access Level <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -572,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#舉例"><span class="nav-number">2.</span> <span class="nav-text">舉例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-直接使用"><span class="nav-number">2.1.</span> <span class="nav-text">1.直接使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Delegate方法"><span class="nav-number">2.2.</span> <span class="nav-text">2.Delegate方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後語"><span class="nav-number">3.</span> <span class="nav-text">後語</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OC中的Copy"><span class="nav-number">1.</span> <span class="nav-text">OC中的Copy</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#結論"><span class="nav-number">1.1.</span> <span class="nav-text">結論</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift中的Copy"><span class="nav-number">2.</span> <span class="nav-text">Swift中的Copy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考文件"><span class="nav-number">3.</span> <span class="nav-text">參考文件</span></a></li></ol></div>
             
 
           </div>
@@ -735,9 +734,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://bing-guo.github.io/2020/04/13/ios-delegate/';
-          this.page.identifier = '2020/04/13/ios-delegate/';
-          this.page.title = '說明Delegate';
+          this.page.url = 'https://bing-guo.github.io/2020/04/28/ios-objc-copy/';
+          this.page.identifier = '2020/04/28/ios-objc-copy/';
+          this.page.title = '說明Copy的用途，補充說明Swift中的Copy';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://myBlog.disqus.com/embed.js';
