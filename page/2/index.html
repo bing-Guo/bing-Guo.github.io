@@ -249,6 +249,8 @@
   <section id="posts" class="posts-expand">
     
     	
+    
+    	
 		   
 
   
@@ -262,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/20/ios-mvc-mvvm/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/23/dp-dependency-injection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -281,7 +283,167 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/20/ios-mvc-mvvm/" itemprop="url">MVC和MVVM差異</a></h1>
+                <a class="post-title-link" href="/2020/04/23/dp-dependency-injection/" itemprop="url">依賴注入 與 依賴反轉原則</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-23T10:22:27+08:00">
+                2020-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/23/dp-dependency-injection/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/04/23/dp-dependency-injection/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>這篇筆記，搜集各方資料所歸納出的寫法，替自己紀錄，並不定時更新或優化。</p>
+<p>依賴注入，藉由分離組件來降低類別間的耦合度。<br>依賴反轉原則，高階模組不該依賴低階模組，兩者應該都依賴於抽象。抽象不應該依賴於細節，細節應該依賴於抽象</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/23/dp-dependency-injection/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+		
+    
+    	
+		   
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/20/intv-ios-mvc-mvvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Bing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/20/intv-ios-mvc-mvvm/" itemprop="url">MVC和MVVM差異</a></h1>
         
 
         <div class="post-meta">
@@ -334,9 +496,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/20/ios-mvc-mvvm/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/20/intv-ios-mvc-mvvm/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/20/ios-mvc-mvvm/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/20/intv-ios-mvc-mvvm/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -369,7 +531,7 @@
 <p>MVC也是APPLE官方推薦的設計模式，Model負責資料、View負責畫面呈現、Controller負責View跟Model數據傳遞。<br>MVVM解決MVC中，ViewController過度擁腫問題，把邏輯移動到ViewModel，把轉場動畫留在View，ViewModel與View需要做資料綁定。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/20/ios-mvc-mvvm/#more" rel="contents">
+            <a class="btn" href="/2020/04/20/intv-ios-mvc-mvvm/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -426,7 +588,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/14/ios-arc/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/14/intv-ios-arc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -445,7 +607,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/14/ios-arc/" itemprop="url">說明ARC、MRC、Retain cycle</a></h1>
+                <a class="post-title-link" href="/2020/04/14/intv-ios-arc/" itemprop="url">說明ARC、MRC、Retain cycle</a></h1>
         
 
         <div class="post-meta">
@@ -498,9 +660,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/14/ios-arc/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/14/intv-ios-arc/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/14/ios-arc/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/14/intv-ios-arc/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -534,10 +696,10 @@
 <li>ARC(Auto Reference Counting)指compiler在編譯時，自動計算refence count。</li>
 <li>MRC(Munual Reference Counting)指需要用程式計算refence count。</li>
 <li>Retain cycle表示當物件相互參考的情況下，程式未能釋放已經不再使用的記憶體(Memory leak)，累積到一定程度，沒有足夠記憶體就會使APP Crash</li>
-<li>簡單的範例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class A &#123;</span><br><span class="line">    var b: B?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B &#123;</span><br><span class="line">    var a: A?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let objA &#x3D; A()</span><br><span class="line">let objB &#x3D; B()</span><br><span class="line"></span><br><span class="line">objA.b &#x3D; objB</span><br><span class="line">objB.a &#x3D; objA</span><br></pre></td></tr></table></figure>
+<li>簡單的範例：<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> b: <span class="type">B?</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a: <span class="type">A?</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> objA = <span class="type">A</span>()</span><br><span class="line"><span class="keyword">let</span> objB = <span class="type">B</span>()</span><br><span class="line"></span><br><span class="line">objA.b = objB</span><br><span class="line">objB.a = objA</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/14/ios-arc/#more" rel="contents">
+            <a class="btn" href="/2020/04/14/intv-ios-arc/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -577,168 +739,6 @@
 		
     
     	
-		   
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/interview-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Bing">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/13/interview-1/" itemprop="url">2020 - iOS面試經驗(上)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T22:09:30+08:00">
-                2020-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
-                    <span itemprop="name">經驗分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/13/interview-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/13/interview-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>2020年記錄自己的面試經歷，先打預防針，面試過程跟結果是因個人背景而異，如果有其他網友看到，僅供分享。</p>
-<ol>
-<li>台灣大哥大</li>
-<li>網際威信</li>
-<li>愛料理</li>
-<li>玉山銀行
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/13/interview-1/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-		
     
     	
 		   
@@ -754,7 +754,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-gcd/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/intv-ios-gcd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -773,7 +773,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/13/ios-gcd/" itemprop="url">說明GCD</a></h1>
+                <a class="post-title-link" href="/2020/04/13/intv-ios-gcd/" itemprop="url">說明GCD</a></h1>
         
 
         <div class="post-meta">
@@ -826,9 +826,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/13/ios-gcd/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/13/intv-ios-gcd/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/13/ios-gcd/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/13/intv-ios-gcd/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -861,7 +861,7 @@
 <p>GCD(Grand Central Dispatch)是操作thread的API，DispatchQueue提供global queue跟自訂queue，訂定又可分為queue類型(Serial或Concurrent)跟同步性(Sync或Async)。<br>Thread執行順序則跟Quality of service(QoS)有關係，依據優先順序分為userInteractive &gt; userInteractive &gt; default &gt; utility &gt; background &gt; unspecified</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/13/ios-gcd/#more" rel="contents">
+            <a class="btn" href="/2020/04/13/intv-ios-gcd/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -914,7 +914,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-access-level/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/intv-ios-access-level/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -933,7 +933,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/13/ios-access-level/" itemprop="url">說明Access Level</a></h1>
+                <a class="post-title-link" href="/2020/04/13/intv-ios-access-level/" itemprop="url">說明Access Level</a></h1>
         
 
         <div class="post-meta">
@@ -986,9 +986,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/13/ios-access-level/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/13/intv-ios-access-level/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/13/ios-access-level/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/13/intv-ios-access-level/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1027,7 +1027,7 @@
 <li>private 同一個class或struct才能使用，swift 4之後extension內也可以存取
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/13/ios-access-level/#more" rel="contents">
+            <a class="btn" href="/2020/04/13/intv-ios-access-level/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1080,7 +1080,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-delegate/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/intv-ios-delegate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -1099,7 +1099,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/13/ios-delegate/" itemprop="url">說明Delegate</a></h1>
+                <a class="post-title-link" href="/2020/04/13/intv-ios-delegate/" itemprop="url">說明Delegate</a></h1>
         
 
         <div class="post-meta">
@@ -1152,9 +1152,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/13/ios-delegate/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/13/intv-ios-delegate/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/13/ios-delegate/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/13/intv-ios-delegate/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1187,329 +1187,7 @@
 <p>Delegate可用於兩物件傳遞資訊，是一種相依介面，不相依實作，所以只要抽換實作即可，達到開放封閉原則。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/13/ios-delegate/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-		
-    
-    	
-		   
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/13/ios-cocoapods/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Bing">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/13/ios-cocoapods/" itemprop="url">Cocoapods使用pod install和pod updata的時機</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-13T13:49:46+08:00">
-                2020-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%A9%A6%E8%80%83%E9%A1%8C/" itemprop="url" rel="index">
-                    <span itemprop="name">面試考題</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/13/ios-cocoapods/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/13/ios-cocoapods/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
-<p>除了要更新library的版本用update，其他都用install，然後記得<em>把Podfile.lock commit到git</em>。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/13/ios-cocoapods/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-		
-    
-    	
-		   
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/12/ios-optional/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Bing">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/12/ios-optional/" itemprop="url">說明Optional以及處理方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-12T16:58:14+08:00">
-                2020-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%A9%A6%E8%80%83%E9%A1%8C/" itemprop="url" rel="index">
-                    <span itemprop="name">面試考題</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/12/ios-optional/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/12/ios-optional/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>這系列筆記，替自己紀錄iOS面試常問考題。</p>
-<ol>
-<li>Optional型態為可能是wrapped數值或是nil，以？做表示。</li>
-<li>unwrapped的方法有五種，分別為force、if、if let, default value, guard let。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/12/ios-optional/#more" rel="contents">
+            <a class="btn" href="/2020/04/13/intv-ios-delegate/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1602,7 +1280,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

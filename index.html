@@ -249,6 +249,8 @@
   <section id="posts" class="posts-expand">
     
     	
+    
+    	
 		   
 
   
@@ -262,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/28/ios-objc-copy/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/29/ios-closure-weak-self/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -281,7 +283,145 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/28/ios-objc-copy/" itemprop="url">說明Copy的用途，補充說明Swift中的Copy</a></h1>
+                <a class="post-title-link" href="/2020/04/29/ios-closure-weak-self/" itemprop="url">Closure的機制，和使用weak跟unowned的時機</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-29T10:21:00+08:00">
+                2020-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/29/ios-closure-weak-self/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/04/29/ios-closure-weak-self/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>這篇筆記主要程式碼跟內容都是聽完podcast <a href="https://weakself.dev/episodes/10" target="_blank" rel="noopener">weak self - 10: 喬喬 escaping</a>後，擷取自己聽得懂的部分所筆記的，podcast的知識含量極高，很香很推薦👍。</p>
+<p>使用weak或是unowned都是要解決closure的retain cycle問題，當capture instance的生命週期跟closure的生命週期一樣的時候，可以使用unowned，其餘寫weak。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/29/ios-closure-weak-self/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+		
+    
+    	
+		   
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/28/intv-ios-objc-copy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Bing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/28/intv-ios-objc-copy/" itemprop="url">說明Copy的用途，補充說明Swift中的Copy</a></h1>
         
 
         <div class="post-meta">
@@ -334,9 +474,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/28/ios-objc-copy/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/28/intv-ios-objc-copy/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/28/ios-objc-copy/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/28/intv-ios-objc-copy/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -369,7 +509,7 @@
 <p>在OC中，copy對於Immutable類型是copy by reference，對Mutable類型是copy by value；mutableCopy則都是copy by value。<br>在Swift中則是採用copy on write作法，最一開始複製為copy by reference，有修改就會自動建立新的記憶體位置。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/28/ios-objc-copy/#more" rel="contents">
+            <a class="btn" href="/2020/04/28/intv-ios-objc-copy/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -422,7 +562,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/28/ios-objc-nsarray/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/28/intv-ios-objc-nsarray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -441,7 +581,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/28/ios-objc-nsarray/" itemprop="url">說明NSArray和NSMutableArray差別，補充說明Swift跟OC差異</a></h1>
+                <a class="post-title-link" href="/2020/04/28/intv-ios-objc-nsarray/" itemprop="url">說明NSArray和NSMutableArray差別，補充說明Swift跟OC差異</a></h1>
         
 
         <div class="post-meta">
@@ -494,9 +634,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/28/ios-objc-nsarray/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/28/intv-ios-objc-nsarray/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/28/ios-objc-nsarray/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/28/intv-ios-objc-nsarray/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -529,7 +669,7 @@
 <p>在OC中，NSArray為不可變動陣列，NSMutableArray為可變動陣列。<br>在Swift中，是看let或是var來判定可不可以修改。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/28/ios-objc-nsarray/#more" rel="contents">
+            <a class="btn" href="/2020/04/28/intv-ios-objc-nsarray/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -586,7 +726,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/27/ios-atomic/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/27/intv-ios-atomic/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -605,7 +745,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/27/ios-atomic/" itemprop="url">解釋atomic與nonatomic</a></h1>
+                <a class="post-title-link" href="/2020/04/27/intv-ios-atomic/" itemprop="url">解釋atomic與nonatomic</a></h1>
         
 
         <div class="post-meta">
@@ -658,9 +798,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/27/ios-atomic/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/27/intv-ios-atomic/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/27/ios-atomic/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/27/intv-ios-atomic/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -693,7 +833,7 @@
 <p>atomic中文為原子意思，是類似於關聯式資料庫中交易(transaction)的概念。<br>atomic和nonatomic用來決定編譯器生成的getter和setter是否為atomic。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/27/ios-atomic/#more" rel="contents">
+            <a class="btn" href="/2020/04/27/intv-ios-atomic/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -748,7 +888,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/25/sketch-plugin/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/25/uiux-sketch-plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -767,7 +907,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/25/sketch-plugin/" itemprop="url">推薦的Sketch Plugin</a></h1>
+                <a class="post-title-link" href="/2020/04/25/uiux-sketch-plugin/" itemprop="url">推薦的Sketch Plugin</a></h1>
         
 
         <div class="post-meta">
@@ -820,9 +960,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/25/sketch-plugin/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/25/uiux-sketch-plugin/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/25/sketch-plugin/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/25/uiux-sketch-plugin/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -861,7 +1001,7 @@
 <li>Craft
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/25/sketch-plugin/#more" rel="contents">
+            <a class="btn" href="/2020/04/25/uiux-sketch-plugin/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -901,168 +1041,6 @@
 		
     
     	
-    
-    	
-    
-    	
-		   
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/23/dependency-injection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Bing">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/23/dependency-injection/" itemprop="url">依賴注入 與 依賴反轉原則</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-23T10:22:27+08:00">
-                2020-04-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">軟體工程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/23/dependency-injection/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/23/dependency-injection/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>這系列筆記，替自己紀錄軟體工程觀念。</p>
-<p>依賴注入，藉由分離組件來降低類別間的耦合度。<br>依賴反轉原則，高階模組不該依賴低階模組，兩者應該都依賴於抽象。抽象不應該依賴於細節，細節應該依賴於抽象</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/23/dependency-injection/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-		
     
   </section>
 
@@ -1118,7 +1096,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
