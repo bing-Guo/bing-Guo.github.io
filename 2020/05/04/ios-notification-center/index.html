@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS,Design Pattern," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,19 @@
 
 
 
-<meta name="description" content="這篇筆記，搜集各方資料所歸納出的寫法，替自己紀錄，並不定時更新或優化。 依賴注入，藉由分離組件來降低類別間的耦合度。依賴反轉原則，高階模組不該依賴低階模組，兩者應該都依賴於抽象。抽象不應該依賴於細節，細節應該依賴於抽象">
+<meta name="description" content="紀錄Notification Center使用方式 設計模式的觀察者模式，是當一個對象狀態改變時，會通知觀察者的一種方式，目的是降低耦合，其他對象不需要知道觀察者要做出的具體行動，在iOS中可以使用Notification Center達到這種效果。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="依賴注入 與 依賴反轉原則">
-<meta property="og:url" content="https://bing-guo.github.io/2020/04/23/dp-dependency-injection/index.html">
+<meta property="og:title" content="Notification Center使用方式">
+<meta property="og:url" content="https://bing-guo.github.io/2020/05/04/ios-notification-center/index.html">
 <meta property="og:site_name" content="Hello Bing">
-<meta property="og:description" content="這篇筆記，搜集各方資料所歸納出的寫法，替自己紀錄，並不定時更新或優化。 依賴注入，藉由分離組件來降低類別間的耦合度。依賴反轉原則，高階模組不該依賴低階模組，兩者應該都依賴於抽象。抽象不應該依賴於細節，細節應該依賴於抽象">
+<meta property="og:description" content="紀錄Notification Center使用方式 設計模式的觀察者模式，是當一個對象狀態改變時，會通知觀察者的一種方式，目的是降低耦合，其他對象不需要知道觀察者要做出的具體行動，在iOS中可以使用Notification Center達到這種效果。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-23T02:22:27.000Z">
-<meta property="article:modified_time" content="2020-04-29T02:49:25.333Z">
+<meta property="article:published_time" content="2020-05-04T01:49:49.000Z">
+<meta property="article:modified_time" content="2020-05-04T04:27:46.644Z">
 <meta property="article:author" content="Bing">
-<meta property="article:tag" content="iOS">
-<meta property="article:tag" content="Design Pattern">
+<meta property="article:tag" content="部落格">
+<meta property="article:tag" content=" iOS">
+<meta property="article:tag" content=" 工程師">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/23/dp-dependency-injection/"/>
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/05/04/ios-notification-center/"/>
 
 
 
 
 
-  <title>依賴注入 與 依賴反轉原則 | Hello Bing</title>
+  <title>Notification Center使用方式 | Hello Bing</title>
   
 
 
@@ -263,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/23/dp-dependency-injection/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/05/04/ios-notification-center/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -280,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">依賴注入 與 依賴反轉原則</h1>
+          <h1 class="post-title" itemprop="name headline">Notification Center使用方式</h1>
         
 
         <div class="post-meta">
@@ -292,8 +293,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-23T10:22:27+08:00">
-                2020-04-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-04T09:49:49+08:00">
+                2020-05-04
               </time>
             
 
@@ -303,28 +304,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design Pattern</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -333,9 +312,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/23/dp-dependency-injection/#comments" itemprop="discussionUrl">
+                <a href="/2020/05/04/ios-notification-center/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/23/dp-dependency-injection/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/05/04/ios-notification-center/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -363,29 +342,27 @@
       
 
       
-        <p>這篇筆記，搜集各方資料所歸納出的寫法，替自己紀錄，並不定時更新或優化。</p>
-<p>依賴注入，藉由分離組件來降低類別間的耦合度。<br>依賴反轉原則，高階模組不該依賴低階模組，兩者應該都依賴於抽象。抽象不應該依賴於細節，細節應該依賴於抽象</p>
+        <p>紀錄Notification Center使用方式</p>
+<p>設計模式的觀察者模式，是當一個對象狀態改變時，會通知觀察者的一種方式，目的是降低耦合，其他對象不需要知道觀察者要做出的具體行動，在iOS中可以使用Notification Center達到這種效果。</p>
 <a id="more"></a>
 
-<h1 id="依賴關係-Dependency-Injection-DI"><a href="#依賴關係-Dependency-Injection-DI" class="headerlink" title="依賴關係 Dependency Injection(DI)"></a>依賴關係 Dependency Injection(DI)</h1><p>依賴關係物件導向做法中是必然存在，物件跟物件之間的關係就是依賴，常見的依賴關係有三種</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Canvas</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> color: <span class="type">UIColor</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">drawCircle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> pen = <span class="type">Pencil</span>(of: color)</span><br><span class="line">    pen.circle(at: origin, d: d)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> canvas = <span class="type">Canvas</span>(color: .red)</span><br><span class="line">canvas.drawCircle(at: (<span class="number">0</span>, <span class="number">0</span>), d: <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<ol>
-<li>依賴於物件名稱，假如Canvas需要Pencil來畫圖行，Pencil這名稱就是固定的</li>
-<li>依賴於其他對象的方法，需要Pencil去執行circle方法畫圓</li>
-<li>依賴於參數引入，因為需要使用Pencil所以需要一個color變數</li>
-</ol>
-<h1 id="依賴注入和依賴反轉原則"><a href="#依賴注入和依賴反轉原則" class="headerlink" title="依賴注入和依賴反轉原則"></a>依賴注入和依賴反轉原則</h1><p>S.O.L.I.D中的D(Dependency Inversion Principle)是這樣說<code>高階模組不該依賴低階模組，兩者應該都依賴於抽象。抽象不應該依賴於細節，細節應該依賴於抽象</code>，他是一種思想，而實際可以靠依賴注入技術達成。</p>
-<p>重新審視上面的程式碼，Canvas(高階)依賴於Pencil(低階)，所以我們第一件事情應該是要抽象化，把Pencil變成是可以畫圖型的抽象類別，然後讓他可以畫圓。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Pen</span> </span>&#123;</span><br><span class="line">  	<span class="function"><span class="keyword">func</span> <span class="title">circle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pencil</span>: <span class="title">Pen</span> </span>&#123;</span><br><span class="line">  	<span class="function"><span class="keyword">func</span> <span class="title">circle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="觀察者模式-與-發佈-訂閱模式"><a href="#觀察者模式-與-發佈-訂閱模式" class="headerlink" title="觀察者模式 與 發佈/訂閱模式"></a>觀察者模式 與 發佈/訂閱模式</h1><p>我第一次聽到這兩個名詞，覺得聽起來不是一樣的東西嗎？經過爬文，發現許多大大們也對此爭論不已，有人認為他們是不同的，有人則是認為名詞是用來溝通，不是拿來裝逼，只要能解決問題，就是好Pattern。我非常認同後者觀念，所以我也就不拘泥了（其實是爭論的過程太艱澀，看不懂🤯<br>簡單講一下觀察者模式，首先物件要觀察一個主題(Subject)，這時我們會稱這個物件叫做觀察者(Observer)，此時當一個主題發生傳遞新的訊息，這些觀察者就會收到通知，進而執行各自的動作。</p>
+<h1 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h1><p>這裡寫了一個簡單的範例，程式碼在<a href="https://github.com/bing-Guo/NotificationCenterDemo" target="_blank" rel="noopener">GitHub - 範例程式</a>當中，有畫面一(PageOneViewController)跟畫面二(PageTwoViewController)，在畫面一點擊「Click Me!」的按鈕，在畫面二呈現Count數。</p>
+<h1 id="Notification-Center語法"><a href="#Notification-Center語法" class="headerlink" title="Notification Center語法"></a>Notification Center語法</h1><p>首先要先建立觀察者，observer通常是self，selector必須是一個objc的方法，name定義要觀察的主題，object則是只接收特定對象發送的訊息，寫nil代表各種全部都接受(但我發現大多數人都是寫nil)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func addObserver(_ observer: Any, </span><br><span class="line">                 selector aSelector: Selector, </span><br><span class="line">                 name aName: NSNotification.Name?, </span><br><span class="line">                 object anObject: Any?)</span><br></pre></td></tr></table></figure>
+<p>實際寫成程式會像這樣，觀察ClickMeEvent事件，接收到通知後，執行plusOne方法。plusOne可以將notification作為參數注入，可以在內部使用notification相關方法，比如說接收傳遞的資訊，這裡就是列印出接收到的userInfo。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">NotificationCenter.default.addObserver(self, selector: #selector(plusOne), name: Notification.Name(rawValue: &quot;ClickMeEvent&quot;), object: nil)</span><br><span class="line"></span><br><span class="line">@objc func plusOne(notification: NSNotification) &#123;</span><br><span class="line">    count +&#x3D; 1</span><br><span class="line">    countLabel.text &#x3D; String(count)</span><br><span class="line">    </span><br><span class="line">    print(notification.userInfo![&quot;msg&quot;] as Any)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>隨著Pencil的改變，Canvas也要改變寫法，這樣寫法，未來如果要改變畫圓得做法，或是要換成水彩筆(WatercolorBrush)都能很快修改，只要水彩筆有遵守Pen的協定，這樣就達成依賴於抽象的結果</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Canvas</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> pen: <span class="type">Pen</span></span><br><span class="line">	<span class="keyword">init</span>(pen: <span class="type">Pen</span>) &#123; <span class="keyword">self</span>.pen = pen &#125;</span><br><span class="line"></span><br><span class="line">  	<span class="function"><span class="keyword">func</span> <span class="title">drawCircle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>) &#123;</span><br><span class="line">  		pen.circle(at: origin, d: d)</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> canvas = <span class="type">Canvas</span>(pen: <span class="type">Pencil</span>(of: .red))</span><br><span class="line">canvas.drawCircle(at: (<span class="number">0</span>, <span class="number">0</span>), d: <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>再來撰寫發送通知的程式，name對應到上述說的主題，object為發佈的對象(如上，大多寫nil)，userInfo作為傳遞的資訊，是選填項目，可寫可不寫。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func post(name aName: NSNotification.Name, </span><br><span class="line">          object anObject: Any?, </span><br><span class="line">          userInfo aUserInfo: [AnyHashable : Any]? &#x3D; nil)</span><br></pre></td></tr></table></figure>
 
-<p>但上面這寫法還是讓Canvas跟Pen擁有關係，因為我在Canvas裡面還是得存一個Pen，如果用依賴注入寫法就可以在改善，如下程式，直接把pen注入到drawCircle方法中，讓注入的pen去畫圓。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Canvas</span> </span>&#123;</span><br><span class="line">  	<span class="function"><span class="keyword">func</span> <span class="title">drawCircle</span><span class="params">(at origin: <span class="params">(Double, Double)</span></span></span>, d: <span class="type">Double</span>, by pen: <span class="type">Pen</span>) &#123;</span><br><span class="line">    	pen.circle(at: origin, d: d)</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> canvas = <span class="type">Canvas</span>()</span><br><span class="line">canvas.drawCircle(at: (<span class="number">0</span>, <span class="number">0</span>), d: <span class="number">10</span>, by: <span class="type">Pencil</span>(of: .red))</span><br></pre></td></tr></table></figure>
+<p>實際寫法，指定主題，接著傳遞資訊，範例中把這段程式放到點擊Click Me的方法中(clickMeBtnTapped)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NotificationCenter.default.post(name: Notification.Name(rawValue: &quot;ClickMeEvent&quot;), object: nil, userInfo: [&quot;msg&quot;: &quot;Send a message.&quot;])</span><br></pre></td></tr></table></figure>
+
 
 <h1 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h1><ol>
-<li><a href="https://boxueio.com/series/build-boxue-app-in-mvvm/episode/490" target="_blank" rel="noopener">泊學 - 如何理解依赖关系</a> </li>
+<li><a href="https://developer.apple.com/documentation/foundation/notificationcenter" target="_blank" rel="noopener">NotificationCenter - Foundation | Apple Developer Documentation</a></li>
+<li><a href="https://notfalse.net/11/pub-sub-pattern" target="_blank" rel="noopener">發佈/訂閱模式 vs 觀察者模式 - NotFalse 技術客</a></li>
 </ol>
 
       
@@ -402,14 +379,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
-          
-            <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
-          
-        </div>
-      
 
       
       
@@ -419,8 +388,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/20/intv-ios-mvc-mvvm/" rel="next" title="MVC和MVVM差異">
-                <i class="fa fa-chevron-left"></i> MVC和MVVM差異
+              <a href="/2020/04/29/xxx-dp-mvvm/" rel="next" title="一個MVVM的範例">
+                <i class="fa fa-chevron-left"></i> 一個MVVM的範例
               </a>
             
           </div>
@@ -428,10 +397,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/23/xxx-share-interview-2/" rel="prev" title="interview-2">
-                interview-2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -577,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#依賴關係-Dependency-Injection-DI"><span class="nav-number">1.</span> <span class="nav-text">依賴關係 Dependency Injection(DI)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依賴注入和依賴反轉原則"><span class="nav-number">2.</span> <span class="nav-text">依賴注入和依賴反轉原則</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考文件"><span class="nav-number">3.</span> <span class="nav-text">參考文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#觀察者模式-與-發佈-訂閱模式"><span class="nav-number">1.</span> <span class="nav-text">觀察者模式 與 發佈&#x2F;訂閱模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#簡易範例"><span class="nav-number">2.</span> <span class="nav-text">簡易範例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Notification-Center語法"><span class="nav-number">3.</span> <span class="nav-text">Notification Center語法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考文件"><span class="nav-number">4.</span> <span class="nav-text">參考文件</span></a></li></ol></div>
             
 
           </div>
@@ -740,9 +705,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://bing-guo.github.io/2020/04/23/dp-dependency-injection/';
-          this.page.identifier = '2020/04/23/dp-dependency-injection/';
-          this.page.title = '依賴注入 與 依賴反轉原則';
+          this.page.url = 'https://bing-guo.github.io/2020/05/04/ios-notification-center/';
+          this.page.identifier = '2020/05/04/ios-notification-center/';
+          this.page.title = 'Notification Center使用方式';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://myBlog.disqus.com/embed.js';
