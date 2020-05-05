@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本來要去面試一間公司，他們的APP是有使用到Google Map的，就花了兩天練習，雖然最後因為一些原因沒面試，這就來稍稍紀錄一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Map API練習">
+<meta property="og:url" content="https://bing-guo.github.io/2020/05/04/ios-google-map-api/index.html">
+<meta property="og:site_name" content="Hello Bing">
+<meta property="og:description" content="本來要去面試一間公司，他們的APP是有使用到Google Map的，就花了兩天練習，雖然最後因為一些原因沒面試，這就來稍稍紀錄一下。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://github.com/bing-Guo/TutorialScreenshot/blob/master/20200504/ParkingDemo.png?raw=true">
+<meta property="article:published_time" content="2020-05-04T04:37:54.000Z">
+<meta property="article:modified_time" content="2020-05-05T02:59:26.652Z">
+<meta property="article:author" content="Bing">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/bing-Guo/TutorialScreenshot/blob/master/20200504/ParkingDemo.png?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/05/04/ios-google-map-api/"/>
+
+
+
+
+
+  <title>Google Map API練習 | Hello Bing</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-92637602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello Bing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">記錄技術筆記、職涯、心情的地方</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/05/04/ios-google-map-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Bing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Google Map API練習</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-04T12:37:54+08:00">
+                2020-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS%E9%96%8B%E7%99%BC/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS開發</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/04/ios-google-map-api/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/05/04/ios-google-map-api/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本來要去面試一間公司，他們的APP是有使用到Google Map的，就花了兩天練習，雖然最後因為一些原因沒面試，這就來稍稍紀錄一下。</p>
+<img src="https://github.com/bing-Guo/TutorialScreenshot/blob/master/20200504/ParkingDemo.png?raw=true" width="30%" height="30%" title="Google Map元件">
+<a id="more"></a>
+
+<h1 id="安裝與API-Key"><a href="#安裝與API-Key" class="headerlink" title="安裝與API Key"></a>安裝與API Key</h1><ul>
+<li>官方文件：<a href="https://developers.google.com/maps/documentation/ios-sdk/get-api-key?hl=zh-tw" target="_blank" rel="noopener">Get an API Key</a></li>
+<li>官方文件：<a href="https://developers.google.com/maps/documentation/ios-sdk/start?hl=zh-tw" target="_blank" rel="noopener">Get Started</a></li>
+</ul>
+<ol>
+<li>你得先取的API Key，這照著上面文件做應該沒問題</li>
+<li>Cocoapod安裝GoogleMaps跟GooglePlaces</li>
+<li>在Info.plist定義URL schemes，這可以讓你在APP中呼叫啟動Google map APP</li>
+<li>接著我會在AppDelegate.swift的didFinishLaunchingWithOptions方法中，加入API Key，大概會像下面這樣，這部分我有特別將API驗證過程封裝到<a href="https://github.com/bing-Guo/GoogleMapDemo-Swift/blob/master/ParkingDemo/Service/Initializer/GoogleMapInitializer.swift" target="_blank" rel="noopener">GoogleMapInitializer.swift</a>，在AppDelegate.swift呼叫<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// GoogleMapInitializer.swift</span></span><br><span class="line"><span class="keyword">import</span> GoogleMaps</span><br><span class="line"><span class="keyword">import</span> GooglePlaces</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoogleMapInitializer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="type">APIKey</span> = <span class="string">"Your Google Map API Key"</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setup</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="type">GMSServices</span>.provideAPIKey(<span class="type">APIKey</span>)</span><br><span class="line">        <span class="type">GMSPlacesClient</span>.provideAPIKey(<span class="type">APIKey</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// AppDelegate.swift</span></span><br><span class="line"><span class="comment">// Skip ...</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: <span class="keyword">Any</span>]?)</span></span> -&gt; <span class="type">Bool</span> &#123;       </span><br><span class="line">    <span class="number">_</span> = <span class="type">GoogleMapInitializer</span>().setup()</span><br><span class="line">    <span class="number">_</span> = <span class="type">LocationManagerInitializer</span>().setup() </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="GMSMapView"><a href="#GMSMapView" class="headerlink" title="GMSMapView"></a>GMSMapView</h1><ul>
+<li><a href="https://developers.google.com/maps/documentation/ios-sdk/map?hl=zh-tw" target="_blank" rel="noopener">Map Objects</a></li>
+</ul>
+<p>GMSMapView是地圖的本身，官方範例是使用純code去建立，如果是用storyboard，首先要先拉一個UIViewController，再把它的class設為MapViewController，再拉一個UIView，class設定為GMSMapView(以下稱mapView)。</p>
+<p>我的程式中是在主畫面以ContainerView去建立，因為預期會在地圖上疊一些圖層，比如說搜尋欄(雖然後來沒有實現搜尋功能 😅</p>
+<h2 id="中心點"><a href="#中心點" class="headerlink" title="中心點"></a>中心點</h2><p>設定地圖中心點需要先建立一個GMSCameraPosition，可以想像是一個鏡頭(你現在看地圖的範圍的中心點)，建立方式如下方程式，設定經度、緯度以及縮大大小(數字越小地圖越廣)，再將camera設定到一個GMSMapView物件中，地圖就會呈現中心點了。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> camera = <span class="type">GMSCameraPosition</span>.camera(withLatitude: <span class="number">1.285</span>, longitude: <span class="number">103.848</span>, zoom: <span class="number">12</span>)</span><br><span class="line">mapView.camera = camera</span><br></pre></td></tr></table></figure>
+
+<h2 id="移動特效"><a href="#移動特效" class="headerlink" title="移動特效"></a>移動特效</h2><p>我在取得到用戶的Location後，會將地圖中心點從預設地點轉移到用戶位置，這時會將新的Location轉換成GMSCameraPosition物件，再呼叫<code>mapView.animate(to: camera!)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">viewModel.updateMapPositionClosure &#x3D; &#123; [weak self] in</span><br><span class="line">    let camera &#x3D; self?.viewModel.getUserCurrentCameraPosition()</span><br><span class="line">    self?.mapView.animate(to: camera!)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="GMSMarker"><a href="#GMSMarker" class="headerlink" title="GMSMarker"></a>GMSMarker</h1><ul>
+<li><a href="https://developers.google.com/maps/documentation/ios-sdk/marker?hl=zh-tw" target="_blank" rel="noopener">Markers</a><br>GMSMarker是地圖上的大頭針，我將其建立的過程封裝到GMSMarker當中</li>
+</ul>
+<ol>
+<li>latitude和longitude就是經緯度</li>
+<li>title跟snippet是Window Info上的資訊(點擊大頭針會有一個小彈跳視窗)，我這裡沒寫snippet是因為只有兩個都非nil才會有Window Info，少一個都不行，因為我不想要所以就拿掉了snippet，title則是拿來存放資料的唯一值，做來點擊大頭針換頁取得更多資訊用。</li>
+<li>iconView可以更換大頭針的圖片</li>
+<li>tracksViewChanges根據官方說法，如果有重繪Marker需求在設為true，否則re-rendered可能會消耗電池使用。</li>
+<li>這裡選擇將GMSMapView注入，直接Marker標記在map上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">extension GMSMarker &#123;</span><br><span class="line">    convenience init(lat: Double, long: Double, title: String, map: GMSMapView) &#123;</span><br><span class="line">        let imageView &#x3D; UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))</span><br><span class="line">        imageView.image &#x3D; UIImage(named: &quot;parking-pin&quot;)</span><br><span class="line">        </span><br><span class="line">        self.init(position: CLLocationCoordinate2D(latitude: lat, longitude: long))</span><br><span class="line">        self.title &#x3D; title</span><br><span class="line">        self.map &#x3D; map</span><br><span class="line">        self.iconView &#x3D; imageView</span><br><span class="line">        self.tracksViewChanges &#x3D; false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+值得注意的是GMSMarker在建立時一定要是在main-thread，不然會出錯，所以我選擇在MapViewController中，接收到ViewModel資料更新後，進行Update。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">viewModel.reloadPinsClosure &#x3D; &#123; [weak self] in</span><br><span class="line">    let pins &#x3D; self?.viewModel.getAllPins()</span><br><span class="line">    </span><br><span class="line">    for pin in pins! &#123;</span><br><span class="line">        DispatchQueue.main.async &#123;</span><br><span class="line">            _ &#x3D; GMSMarker(lat: pin.position.lat,</span><br><span class="line">                          long: pin.position.long,</span><br><span class="line">                          title: pin.title,</span><br><span class="line">                          map: self!.mapView)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="點擊事件"><a href="#點擊事件" class="headerlink" title="點擊事件"></a>點擊事件</h2><p>我的範例邏輯是這樣，點擊大頭針，會present到詳細頁面，所以我需要將GMSMarker的title資訊去取得到Pin(我自己設定的Mode，有其他停車場的資訊)，再將詳細頁面的ViewModel設定完成，資料都完成後再進行換頁。</p>
+<p>切記要先設置delegate，像這樣<code>mapView.delegate = self</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MapViewController</span>: <span class="title">GMSMapViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapView</span><span class="params">(<span class="number">_</span> mapView: GMSMapView, didTap marker: GMSMarker)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.viewModel.selectedParkingTitle = marker.title</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> storyboard = <span class="type">UIStoryboard</span>(name: <span class="string">"ParkingInfo"</span>, bundle: <span class="literal">nil</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> vc = storyboard.instantiateViewController(withIdentifier: <span class="string">"ParkingInfoViewController"</span>) <span class="keyword">as</span>? <span class="type">ParkingInfoViewController</span> &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> cellViewModel = <span class="type">ParkingInfoViewModel</span>(pin: viewModel.selectedPin!)</span><br><span class="line">            vc.viewModel = cellViewModel</span><br><span class="line">                </span><br><span class="line">            vc.modalPresentationStyle = .fullScreen</span><br><span class="line">            <span class="keyword">self</span>.present(vc, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="MyLocation-amp-MyLocationButton"><a href="#MyLocation-amp-MyLocationButton" class="headerlink" title="MyLocation &amp; MyLocationButton"></a>MyLocation &amp; MyLocationButton</h1><p>MyLocation就是你人現在的位置(藍色點點)，MyLocationButton則是點擊後會focus到你現在位置，這兩個設置很簡單，兩行程式結束</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mapView.settings.myLocationButton = <span class="literal">true</span></span><br><span class="line">mapView.isMyLocationEnabled = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="連接到Google-Map-APP"><a href="#連接到Google-Map-APP" class="headerlink" title="連接到Google Map APP"></a>連接到Google Map APP</h1><p>我將下方程式綁在按鈕事件當中，當點擊按鈕後，取得選定的大頭針位置，將經緯度帶入URL當中，以<code>comgooglemaps://</code>作為開啟Google Map APP的URL，這點<a href="https://bing-guo.github.io/2020/05/04/ios-phone-call/">實作撥打電話功能</a>的方式一樣，不過記得要先將Info.plist定義好URL schema，這請參照此篇的第一步驟。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let place &#x3D; viewModel.selectedPin.position</span><br><span class="line">if (UIApplication.shared.canOpenURL(URL(string:&quot;comgooglemaps:&#x2F;&#x2F;&quot;)!)) &#123;</span><br><span class="line">    if let url &#x3D; URL(string: &quot;comgooglemaps:&#x2F;&#x2F;?saddr&#x3D;&amp;daddr&#x3D;\(place.lat),\(place.long)&amp;directionsmode&#x3D;driving&quot;) &#123;</span><br><span class="line">        UIApplication.shared.open(url, options: [:])</span><br><span class="line">    &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    if let url &#x3D; URL(string: &quot;https:&#x2F;&#x2F;www.google.co.in&#x2F;maps&#x2F;dir&#x2F;?saddr&#x3D;&amp;daddr&#x3D;\(place.lat),\(place.long)&amp;directionsmode&#x3D;driving&quot;) &#123;</span><br><span class="line">        UIApplication.shared.open(url)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="後語"><a href="#後語" class="headerlink" title="後語"></a>後語</h1><p>以現在收費方式來看，Maps SDK for iOS是免費且無限制，所以一般地圖呈現是免費的，但其他像是導航、景點、街景這些是要收費的，不過下次要做Map我可能會選用Apple提供的地圖，一來看起來導航什麼是免費的，看Youbike APP做起來效果也不錯，二來Xcode內建就有，也許整合性會好多(猜測，我也還沒用過)，以上，謝謝觀賞(倉促結束…🤷‍♂️</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/04/ios-notification-center/" rel="next" title="Notification Center使用方式">
+                <i class="fa fa-chevron-left"></i> Notification Center使用方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/04/ios-phone-call/" rel="prev" title="實作撥打電話功能">
+                實作撥打電話功能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+
+          
+          <div style="">
+            
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+          </div>
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Bing</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝與API-Key"><span class="nav-number">1.</span> <span class="nav-text">安裝與API Key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GMSMapView"><span class="nav-number">2.</span> <span class="nav-text">GMSMapView</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#中心點"><span class="nav-number">2.1.</span> <span class="nav-text">中心點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移動特效"><span class="nav-number">2.2.</span> <span class="nav-text">移動特效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GMSMarker"><span class="nav-number">3.</span> <span class="nav-text">GMSMarker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#點擊事件"><span class="nav-number">3.1.</span> <span class="nav-text">點擊事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyLocation-amp-MyLocationButton"><span class="nav-number">4.</span> <span class="nav-text">MyLocation &amp; MyLocationButton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#連接到Google-Map-APP"><span class="nav-number">5.</span> <span class="nav-text">連接到Google Map APP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後語"><span class="nav-number">6.</span> <span class="nav-text">後語</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bing</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://myBlog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://bing-guo.github.io/2020/05/04/ios-google-map-api/';
+          this.page.identifier = '2020/05/04/ios-google-map-api/';
+          this.page.title = 'Google Map API練習';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://myBlog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
