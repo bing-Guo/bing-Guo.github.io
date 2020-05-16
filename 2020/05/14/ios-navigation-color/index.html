@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
+<meta name="description" content="常常會對導覽列作顏色、字體等等的設定，本篇做一個紀錄，以後就不用忘記又再問Google（汗顏 😅">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ios_unit_testing">
-<meta property="og:url" content="https://bing-guo.github.io/2020/04/25/xxx-ios-unit-testing/index.html">
+<meta property="og:title" content="導覽列的顏色配置">
+<meta property="og:url" content="https://bing-guo.github.io/2020/05/14/ios-navigation-color/index.html">
 <meta property="og:site_name" content="Hello Bing">
+<meta property="og:description" content="常常會對導覽列作顏色、字體等等的設定，本篇做一個紀錄，以後就不用忘記又再問Google（汗顏 😅">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-25T07:46:10.000Z">
-<meta property="article:modified_time" content="2020-04-25T07:47:45.000Z">
+<meta property="article:published_time" content="2020-05-14T07:40:41.000Z">
+<meta property="article:modified_time" content="2020-05-14T07:43:35.077Z">
 <meta property="article:author" content="Bing">
-<meta property="article:tag" content="部落格">
-<meta property="article:tag" content=" iOS">
-<meta property="article:tag" content=" 工程師">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/25/xxx-ios-unit-testing/"/>
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/05/14/ios-navigation-color/"/>
 
 
 
 
 
-  <title>ios_unit_testing | Hello Bing</title>
+  <title>導覽列的顏色配置 | Hello Bing</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/25/xxx-ios-unit-testing/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/05/14/ios-navigation-color/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ios_unit_testing</h1>
+          <h1 class="post-title" itemprop="name headline">導覽列的顏色配置</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-25T15:46:10+08:00">
-                2020-04-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-14T15:40:41+08:00">
+                2020-05-14
               </time>
             
 
@@ -302,6 +302,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS%E9%96%8B%E7%99%BC/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS開發</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -310,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/25/xxx-ios-unit-testing/#comments" itemprop="discussionUrl">
+                <a href="/2020/05/14/ios-navigation-color/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/25/xxx-ios-unit-testing/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/05/14/ios-navigation-color/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,7 +362,12 @@
       
 
       
-        
+        <p>常常會對導覽列作顏色、字體等等的設定，本篇做一個紀錄，以後就不用忘記又再問Google（汗顏 😅 </p>
+<a id="more"></a>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一些顏色的配置</span></span><br><span class="line"><span class="keyword">let</span> navBtnColor = <span class="type">UIColor</span>.<span class="keyword">init</span>(hex: <span class="string">"#1B1B1B"</span>)</span><br><span class="line"><span class="keyword">let</span> navBackground = <span class="type">UIColor</span>.<span class="keyword">init</span>(hex: <span class="string">"#F9BF45"</span>)</span><br><span class="line"><span class="keyword">let</span> titleColor = <span class="type">UIColor</span>.<span class="keyword">init</span>(hex: <span class="string">"#1B1B1B"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">self</span>.title = <span class="string">"標題"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 導覽列左右按鈕字體顏色</span></span><br><span class="line"><span class="keyword">self</span>.navigationController?.navigationBar.tintColor = navBtnColor</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> navBarAppearance = <span class="type">UINavigationBarAppearance</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不透明設定</span></span><br><span class="line">navBarAppearance.configureWithOpaqueBackground()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 導覽列背景顏色</span></span><br><span class="line">navBarAppearance.backgroundColor = navBackground</span><br><span class="line"></span><br><span class="line"><span class="comment">// 標題顏色</span></span><br><span class="line">navBarAppearance.titleTextAttributes = [.foregroundColor: titleColor]</span><br><span class="line"></span><br><span class="line">navigationController?.navigationBar.standardAppearance = navBarAppearance</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -355,6 +382,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
 
       
       
@@ -364,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/23/xxx-share-interview-2/" rel="next" title="interview-2">
-                <i class="fa fa-chevron-left"></i> interview-2
+              <a href="/2020/05/04/ios-phone-call/" rel="next" title="實作撥打電話功能">
+                <i class="fa fa-chevron-left"></i> 實作撥打電話功能
               </a>
             
           </div>
@@ -373,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/25/uiux-sketch-plugin/" rel="prev" title="推薦的Sketch Plugin">
-                推薦的Sketch Plugin <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -660,9 +689,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://bing-guo.github.io/2020/04/25/xxx-ios-unit-testing/';
-          this.page.identifier = '2020/04/25/xxx-ios-unit-testing/';
-          this.page.title = 'ios_unit_testing';
+          this.page.url = 'https://bing-guo.github.io/2020/05/14/ios-navigation-color/';
+          this.page.identifier = '2020/05/14/ios-navigation-color/';
+          this.page.title = '導覽列的顏色配置';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://myBlog.disqus.com/embed.js';
