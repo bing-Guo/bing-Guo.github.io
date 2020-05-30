@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS,面試," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="「本篇適合給找想iOS工作的應屆畢業or想轉換跑道的」前一篇有講到，這是我第一次這麼長時間找工作，又或者是作為一個毫無經驗的人找工作，某種程度上，我也滿享受這整個轉換跑道過程，也都會記錄在筆記本上，本篇則針對我準備過程做個紀錄，若你是應屆畢業生、或是也想跟我一樣轉換跑道到iOS，希望本篇可以給你一些些幫助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS菜雞面試經驗分享 - 心得篇">
+<meta property="og:url" content="https://bing-guo.github.io/2020/05/30/share-interview-2/index.html">
+<meta property="og:site_name" content="Hello Bing">
+<meta property="og:description" content="「本篇適合給找想iOS工作的應屆畢業or想轉換跑道的」前一篇有講到，這是我第一次這麼長時間找工作，又或者是作為一個毫無經驗的人找工作，某種程度上，我也滿享受這整個轉換跑道過程，也都會記錄在筆記本上，本篇則針對我準備過程做個紀錄，若你是應屆畢業生、或是也想跟我一樣轉換跑道到iOS，希望本篇可以給你一些些幫助。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-05-30T07:20:37.000Z">
+<meta property="article:modified_time" content="2020-05-30T08:53:40.622Z">
+<meta property="article:author" content="Bing">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="面試">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/05/30/share-interview-2/"/>
+
+
+
+
+
+  <title>iOS菜雞面試經驗分享 - 心得篇 | Hello Bing</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-92637602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello Bing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">記錄技術筆記、職涯、心情的地方</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/05/30/share-interview-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Bing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS菜雞面試經驗分享 - 心得篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-30T15:20:37+08:00">
+                2020-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
+                    <span itemprop="name">經驗分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/30/share-interview-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/05/30/share-interview-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>「本篇適合給找想iOS工作的應屆畢業or想轉換跑道的」<br>前一篇有講到，這是我第一次這麼長時間找工作，又或者是作為一個毫無經驗的人找工作，某種程度上，我也滿享受這整個轉換跑道過程，也都會記錄在筆記本上，本篇則針對我準備過程做個紀錄，若你是應屆畢業生、或是也想跟我一樣轉換跑道到iOS，希望本篇可以給你一些些幫助。</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>面試的過程我把它記錄在另外一篇，本篇是記錄我從不會寫iOS到我找到工作的過程，買了哪些書、準備了哪些技術，我會以流水帳的方式，中間穿插我周遭遇到的人事物：</p>
+<ol>
+<li>初步接觸，寫出興趣</li>
+<li>開始課金，買了人生第一台Mac</li>
+<li>做Side project（上）</li>
+<li>準備面試考題（上）</li>
+<li>菜鳥面試初體驗</li>
+<li>做Side project（下）</li>
+<li>準備面試考題（下）</li>
+<li>一直刷、一直投、一直找</li>
+<li>後語</li>
+</ol>
+<h1 id="初步接觸，寫出興趣"><a href="#初步接觸，寫出興趣" class="headerlink" title="初步接觸，寫出興趣"></a>初步接觸，寫出興趣</h1><p>我剛開始接觸iOS時，連台Mac都沒有，跟友人借Mac或是在<a href="http://online.swiftplayground.run/" target="_blank" rel="noopener">Swift Playground</a>做練習，目的是先嘗試跟熟悉一下swift語法，然後花一點時間說服自己買下MacBook Pro（無誤）。語法的教材是參考<a href="https://itisjoe.gitbooks.io/swiftgo/content/ch1/ch1.html" target="_blank" rel="noopener">Swift 基礎 · Swift 起步走</a>，雖然很多因為swift版本的不同而有所差異，但作為初體驗+免費教材，真的很佛心了！如果有其他程式語言的經驗，會發現swift滿好學的，這時期的我看到closure, enum, extension整個黑人問號，不過我也就不糾結了，反正大概有個印象就往下走，看久就會吧！</p>
+<h1 id="開始課金，買了人生第一台Mac"><a href="#開始課金，買了人生第一台Mac" class="headerlink" title="開始課金，買了人生第一台Mac"></a>開始課金，買了人生第一台Mac</h1><p>對語法有一定的熟悉後，我買了一台Mac（現在還在分期…），因為毫無經驗，我需要一本step by syep的書，我購入AppCoda出版的<a href="https://www.appcoda.com.tw/learnswift/" target="_blank" rel="noopener">iOS 12 APP 程式設計實戰心法</a>(現在改版成iOS 13)跟因為一起買就有打折的<a href="https://www.appcoda.com.tw/intermediate-swift-tips/" target="_blank" rel="noopener">iOS 12 APP 程式設計進階攻略</a>(現在改版成iOS 13)，這系列的書都有截圖，並且每階段的說明，還附上程式碼，根本超佛！加上一開始不是很習慣stroyboard，有截圖真的幫助很大！另外一個好處就是，照著整本書做完一個功能很完整的作品。</p>
+<p>不過，我只有按部就班看到13章，後面章節當工具書需要才會去看，會這樣做是因為我犯賤，學了一點東西就想嘗試自己想做的，事後想想並沒有不好，如果全部都按照書本做，必定會比較少遇到困難，所以如果看書到一半躍躍欲試，不仿可以先放下書本，<code>這時期最重要還是寫出興趣重要啊！</code></p>
+<h2 id="講到作品，在面試時跟某主管的對話"><a href="#講到作品，在面試時跟某主管的對話" class="headerlink" title="講到作品，在面試時跟某主管的對話"></a>講到作品，在面試時跟某主管的對話</h2><p>『主管』：這作品都是你做的？<br>『我』：對啊（不然呢？）<br>『主管』：因為很多（沒經驗的）面試者的作品一看就知道是老師做的，可能是上課的作業，但看起來你的是自己做的，這樣不錯。</p>
+<p>所以，也建議大家除了上課或是教學的作業，也要多加入一些自己的想法，讓整個作品有自己的感覺。</p>
+<h2 id="關於storyboard-xib-純程式碼"><a href="#關於storyboard-xib-純程式碼" class="headerlink" title="關於storyboard, xib, 純程式碼"></a>關於storyboard, xib, 純程式碼</h2><p>這裡聊一件事情，我一開始學很糾結怎麼有人用純程式碼做UI、有人用xib、有人用storyboard，網路上每個大大都有自己習慣的方式，那我要選哪一個？搞得我好混亂啊！<br>後來我就逐一嘗試，也漸漸理解各自的好處，這裡用白話解釋給大家聽。</p>
+<ul>
+<li>storyboard：用視覺化介面去製作UI，上面提到AppCoda出版的教材就是這樣做，好處就是很直覺，設定auto layout也神快(一種佈局方式，可以適應不同尺寸螢幕)，熟悉後拉UI很快速。缺點就是難做版本控制，很難看出這的修改跟上次的版本的差別；很多時候還是得從程式去控制，這時就變成東一塊在程式，西一塊在storyboard設定，程式一大起來，要種東西就有點久了。</li>
+<li>storyboard + xib：xib也是視覺化介面製作UI的方式，把原本都塞在storyboard上的元件，分離出來成多個xib，如此一來就可以提供不同畫面使用，缺點就跟storyboard一樣，多人協同開發會不停發生衝突。</li>
+<li>純程式碼：用視覺化介面能做到的事情，用程式碼一定都能做到，也易於做版本控制，缺點就是對一開始接觸的新手，門檻可能高了一些。教材部分可以參考<a href="https://itisjoe.gitbooks.io/swiftgo/" target="_blank" rel="noopener">Swift 起步走</a>，他的範例都是純程式開發，不過要自行排除swift版本問題。 純程式開發在layout佈局可以使用原生的NSLayoutConstraint，或是一樣是auto layout但是語法更簡單的<a href="https://github.com/SnapKit/SnapKit" target="_blank" rel="noopener">SnapKit</a>，OC版本就是<a href="https://github.com/SnapKit/Masonry" target="_blank" rel="noopener">Masonry</a>，或是使用flexbox佈局方式的<a href="https://github.com/layoutBox/FlexLayout" target="_blank" rel="noopener">FlexLayout</a>。<br>要給予建議的話，可以從<code>storyboard &gt; storyboard + xib &gt; 純程式碼</code>的順序做學習，會對畫面的結構越來越熟悉！</li>
+</ul>
+<h1 id="做Side-project（上）"><a href="#做Side-project（上）" class="headerlink" title="做Side project（上）"></a>做Side project（上）</h1><p>這時間做了兩個作品，Github連結在這，<a href="https://github.com/bing-Guo/newsApp" target="_blank" rel="noopener">看新聞app</a>跟<a href="https://github.com/bing-Guo/GoodHabits" target="_blank" rel="noopener">保持習慣的app</a>。<br>第一個是想練習接API＋使用第三方套件，所以就在建了一個Laravel專案在GCP上，到了很後面，覺得這個專案不怎麼美觀＋費工，就把它收起來了；第二個則是想練習純code做UI跟資料庫；這時候的我還是在上班，邊做邊找資料研究，就光做完以上兩個花了我不少時間，接著，我就打算去面試了，很扯吧，我是說真的，就因為我學長的一句話『新人會接API就可以錄取啦！』，我也深信不疑，於是我開始準備面試考題。</p>
+<h1 id="準備面試考題（上）"><a href="#準備面試考題（上）" class="headerlink" title="準備面試考題（上）"></a>準備面試考題（上）</h1><p>這階段我針對，對語言的理解做準備，上網把PTT、Medium和各種題庫文章挖出來，基本上把看過的題目整理出來，會發現重要觀念就是那幾題，剛開始看不懂沒關係，時不時就回來看幾眼，有一天就會看懂了！<br>我之前有寫的一些<a href="https://bing-guo.github.io/categories/%E9%9D%A2%E8%A9%A6%E8%80%83%E9%A1%8C/">面試考題</a>也可以參考，之後技術熟練一點，會再持續寫新文章。</p>
+<h1 id="菜鳥面試初體驗"><a href="#菜鳥面試初體驗" class="headerlink" title="菜鳥面試初體驗"></a>菜鳥面試初體驗</h1><p>之前可能有提過，我第一份工作因為技能樹符合＋內推，面試兩間，不到半個月就找到工作了。所以這次重新變回新人，無依無靠開始找工作，面試過程可以看我另外一篇。</p>
+<p>這時我還在工作，也不好意思一直請假，所以只面了三間，其實，面了三間就大概的知道自己的水平在哪，其中一間還真的有要我，我很不知足的沒答應，一來是希望再看看，二來知道自己還太廢，想再給自己一點時間。於是跟前主管談完，收到滿滿的祝福離開前公司。</p>
+<h1 id="做Side-project（下）"><a href="#做Side-project（下）" class="headerlink" title="做Side project（下）"></a>做Side project（下）</h1><p>有了幾次面試經驗，歸納出自己還不足的部分，其中兩點我覺得最重要，拉UI能力太弱，對UIKit不熟，畢竟期望新人什麼都不會至少要會做UI吧！第二部分是用太多三方套件，針對以上兩點，我決定再做一個專案，然後不用套件，UI要超讚！所以有了<a href="https://github.com/bing-Guo/MyBalanceSheet" target="_blank" rel="noopener">個人資產管理表</a>。</p>
+<p>這花了我一個月左右，除了以上兩點，也挑戰了CoreData跟APP上架（也就是要交保護費給Apple了），這APP在後期面試也獲得不錯回應，UI/UX普遍評價乾乾淨淨好操作，自己的信心也就上來了，開始新的面試挑戰。</p>
+<h2 id="關於要用套件還是自己造輪子？"><a href="#關於要用套件還是自己造輪子？" class="headerlink" title="關於要用套件還是自己造輪子？"></a>關於要用套件還是自己造輪子？</h2><p>面了幾間公司發現，有些公司偏好自己造輪子，有些則很愛用第三方套件，那我到底是要不要用套件啊？個人後來的心得是，覺得兩個都要會（廢話），但可以先用用套件，再回頭來實作看看。也詢問過我學長建議，他原則是『UI的套件不用，偏底層的套件會用』。</p>
+<h1 id="準備面試考題（下）"><a href="#準備面試考題（下）" class="headerlink" title="準備面試考題（下）"></a>準備面試考題（下）</h1><p>這時間開始到處投履歷，會收到一些實作考題，這裡歸納出一些方向：</p>
+<ol>
+<li>串接API(原生URLSession/套件<a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="noopener">Alamofire</a>)，並把Json轉成Codable物件</li>
+<li>延遲載入圖片(原生URLSession/套件<a href="https://github.com/onevcat/Kingfisher" target="_blank" rel="noopener">Kingfisher</a>)</li>
+<li>CollectionView做出照片牆</li>
+<li>Infinite scroll無線下拉，就跟你在拉IG一樣</li>
+<li>TableView依據資料，呈現自定義的cell</li>
+<li>儲存Persistent Data(持久性資料)</li>
+</ol>
+<p>前四點可以參考<a href="https://github.com/bing-Guo/FlickrDemo" target="_blank" rel="noopener">GitHub - bing-Guo/FlickrDemo</a>的專案，獻醜給大家參考 🙈</p>
+<p>第五點我想表達的像是<a href="https://www.raywenderlich.com/5542-enum-driven-tableview-development" target="_blank" rel="noopener">Enum-Driven TableView Development</a>或是<a href="https://medium.com/swift-programming/swift-enums-and-uitableview-sections-1806b74b8138" target="_blank" rel="noopener">Swift Enums and UITableView Sections</a>，根據資料的enum不同或是class不同選擇呈現不同的cell，像是IG其實是不同類型的cell組成，也可以稱為data-driven UICollectionView，可以套件<a href="https://instagram.github.io/IGListKit/modeling-and-binding.html" target="_blank" rel="noopener">IGListKit</a>可以實現一樣效果(但我還沒用過)</p>
+<p>第六點是儲存的方式，像是SQLite, CoreData, Realm，我個人試過後兩者，偏愛Realm，他很好上手。另外，像是UserDefault可以儲存簡單的資料，比如是不是第一次開啟APP，上次開啟APP的時間，這種類似偏好設定的資料，不過儲存在此的資料不是太安全，要保存密碼或是隱私資訊要使用Keychain(不過我還不會)</p>
+<h2 id="關於Objective-C"><a href="#關於Objective-C" class="headerlink" title="關於Objective-C"></a>關於Objective-C</h2><p>滿多公司原有專案都還是使用objc，有些則是objc+swift共存，所以會objc對找工作絕對會好找許多。這部分自己挺弱的，找工作也有刻意避開這塊，能選擇的工作變得滿少的…，過程中是有點排斥的，會想說幹嘛去舊東西啊！後來說服自己的理由是，畢竟objc活了20幾年，儘管他是舊曆史，但對我來說還是新東西，多學一個語言能多賺點錢，不是很好嗎？</p>
+<h1 id="一直刷、一直投、一直找"><a href="#一直刷、一直投、一直找" class="headerlink" title="一直刷、一直投、一直找"></a>一直刷、一直投、一直找</h1><p>開始找工作第一個月，不用上班好自由，每天只要研究技術好開心！偶爾接到面試邀約，去嘗試不同公司類型，去了解自己的喜好，一切很新鮮很有希望。<br>開始找工作第二個月，我是不是很廢，怎麼沒有公司要我，一直找不到要想要的工作怎麼辦…。這裡講一下，也不是完全找不到工作，但我自己心中也是有未來工作的樣子，我離職也是希望能到那樣的公司啊！我也不希望進去然後都不喜歡，做的不開心。</p>
+<p>這時的我每天睡前都會刷一波104，符合條件的我都會去試試看，超級焦慮，平常沒事情在家就是打開電腦，也不知道要往哪個方向精進，然後滑手機，或是吃飯吃特別久在看YT，每天看起來好像很忙很認真，其實只是想快點渡過那一天，希望明天就會有面試邀約，是不是超廢物，但那時候狀況的確很糟…，這段時間有一間公司有意錄取我，但我很沒信心，怕不能勝任，所以也婉拒(逃避)了，但後來想想，若是身心狀況良好的我，應該會很樂於接受挑戰吧！</p>
+<p>後來，買了<a href="https://boxueio.com/" target="_blank" rel="noopener">泊學</a>，它是一個聲音很好聽(?)影片品質又很高的iOS教學平台，在上面找到新的技術研究方向，也不在把自己關在家，會找個地方喝個咖啡，也許是寫個文章，也許是對特定技術做個小練習，放慢步調，把自己的身心狀況調整好，後來就找到目前的公司，這間公司也符合我心中9成5的要求，一切很快很順利，就錄取了！</p>
+<h2 id="求職平台的選擇"><a href="#求職平台的選擇" class="headerlink" title="求職平台的選擇"></a>求職平台的選擇</h2><p>我說使用方是是會過濾出『零經驗、一年以下經驗』的工作，所以下面職缺多不多，也是以這個依據</p>
+<ul>
+<li>104人力銀行：我的主力，職缺很多，看你履歷的人也多，可以找到很多能接受零經驗的公司</li>
+<li>CakeResume：職缺不多，好處是可以參考其他人的作品跟履歷</li>
+<li>LinkedIn：我自己用是沒任何效果，不過聽朋友說是我沒加朋友跟Hunter（邊緣人），加了之後會有Hunter找上門</li>
+<li>1111：我是後期使用，職缺不多，開放後找我的都是保險、售屋的工作…</li>
+<li>518：這也是後期使用，職缺也不多，APP UI我覺得不錯，我也是在這上面找到我現在的歸屬</li>
+</ul>
+<h1 id="後語"><a href="#後語" class="headerlink" title="後語"></a>後語</h1><p>開始工作後，就好像時間過了好久，我都快忘記找工作的感覺，本篇寫了3000多字，希望能對社會新鮮人或是跟我一樣想轉換跑道的人一點幫助，期望大家都能找到自己想要的工作 🙆‍♂️🙆‍♂️🙆‍♂️</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/%E9%9D%A2%E8%A9%A6/" rel="tag"># 面試</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/29/share-interview-1/" rel="next" title="iOS菜雞面試經驗分享 - 面試篇">
+                <i class="fa fa-chevron-left"></i> iOS菜雞面試經驗分享 - 面試篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+
+          
+          <div style="">
+            
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+          </div>
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Bing</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初步接觸，寫出興趣"><span class="nav-number">2.</span> <span class="nav-text">初步接觸，寫出興趣</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#開始課金，買了人生第一台Mac"><span class="nav-number">3.</span> <span class="nav-text">開始課金，買了人生第一台Mac</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#講到作品，在面試時跟某主管的對話"><span class="nav-number">3.1.</span> <span class="nav-text">講到作品，在面試時跟某主管的對話</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#關於storyboard-xib-純程式碼"><span class="nav-number">3.2.</span> <span class="nav-text">關於storyboard, xib, 純程式碼</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#做Side-project（上）"><span class="nav-number">4.</span> <span class="nav-text">做Side project（上）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#準備面試考題（上）"><span class="nav-number">5.</span> <span class="nav-text">準備面試考題（上）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#菜鳥面試初體驗"><span class="nav-number">6.</span> <span class="nav-text">菜鳥面試初體驗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#做Side-project（下）"><span class="nav-number">7.</span> <span class="nav-text">做Side project（下）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#關於要用套件還是自己造輪子？"><span class="nav-number">7.1.</span> <span class="nav-text">關於要用套件還是自己造輪子？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#準備面試考題（下）"><span class="nav-number">8.</span> <span class="nav-text">準備面試考題（下）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#關於Objective-C"><span class="nav-number">8.1.</span> <span class="nav-text">關於Objective-C</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一直刷、一直投、一直找"><span class="nav-number">9.</span> <span class="nav-text">一直刷、一直投、一直找</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#求職平台的選擇"><span class="nav-number">9.1.</span> <span class="nav-text">求職平台的選擇</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後語"><span class="nav-number">10.</span> <span class="nav-text">後語</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bing</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://myBlog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://bing-guo.github.io/2020/05/30/share-interview-2/';
+          this.page.identifier = '2020/05/30/share-interview-2/';
+          this.page.title = 'iOS菜雞面試經驗分享 - 心得篇';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://myBlog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
