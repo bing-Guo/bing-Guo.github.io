@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS,Design Pattern," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -79,19 +79,21 @@
 
 
 
-<meta name="description" content="這篇筆記，搜集各方資料所歸納出的寫法，替自己紀錄，並不定時更新或優化。">
+<meta name="description" content="距離前一篇已經四個月之久，因為要補的實在太多，花了一點時間充電 😂，中間有參加IT邦幫忙鐵人賽，寫了30天RxSwift的文章，有時間再把文章做個搬移。 今天想分享一下處理SwiftLint當中『Sorted Imports』這條規範時，使用的小工具。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一個MVVM的範例">
-<meta property="og:url" content="https://bing-guo.github.io/2020/04/29/xxx-dp-mvvm/index.html">
+<meta property="og:title" content="【小訣竅】Sorted imports">
+<meta property="og:url" content="https://bing-guo.github.io/2020/11/15/tip-sort-uniq/index.html">
 <meta property="og:site_name" content="Hello Bing">
-<meta property="og:description" content="這篇筆記，搜集各方資料所歸納出的寫法，替自己紀錄，並不定時更新或優化。">
+<meta property="og:description" content="距離前一篇已經四個月之久，因為要補的實在太多，花了一點時間充電 😂，中間有參加IT邦幫忙鐵人賽，寫了30天RxSwift的文章，有時間再把文章做個搬移。 今天想分享一下處理SwiftLint當中『Sorted Imports』這條規範時，使用的小工具。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-29T02:21:27.000Z">
-<meta property="article:modified_time" content="2020-04-29T05:14:26.733Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/bing-Guo/bing-Guo.github.io/master/images/2020-11-15-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/bing-Guo/bing-Guo.github.io/master/images/2020-11-15.png">
+<meta property="article:published_time" content="2020-11-15T07:01:35.000Z">
+<meta property="article:modified_time" content="2020-11-15T08:08:58.471Z">
 <meta property="article:author" content="Bing">
 <meta property="article:tag" content="iOS">
-<meta property="article:tag" content="Design Pattern">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/bing-Guo/bing-Guo.github.io/master/images/2020-11-15-1.png">
 
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://bing-Guo.github.io/2020/04/29/xxx-dp-mvvm/"/>
+  <link rel="canonical" href="https://bing-Guo.github.io/2020/11/15/tip-sort-uniq/"/>
 
 
 
 
 
-  <title>一個MVVM的範例 | Hello Bing</title>
+  <title>【小訣竅】Sorted imports | Hello Bing</title>
   
 
 
@@ -263,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/04/29/xxx-dp-mvvm/">
+    <link itemprop="mainEntityOfPage" href="https://bing-Guo.github.io/2020/11/15/tip-sort-uniq/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -280,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一個MVVM的範例</h1>
+          <h1 class="post-title" itemprop="name headline">【小訣竅】Sorted imports</h1>
         
 
         <div class="post-meta">
@@ -292,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-29T10:21:27+08:00">
-                2020-04-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-15T15:01:35+08:00">
+                2020-11-15
               </time>
             
 
@@ -315,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design Pattern</span>
+                  <a href="/categories/iOS%E9%96%8B%E7%99%BC/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS開發</span>
                   </a>
                 </span>
 
@@ -333,9 +335,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/29/xxx-dp-mvvm/#comments" itemprop="discussionUrl">
+                <a href="/2020/11/15/tip-sort-uniq/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/29/xxx-dp-mvvm/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/11/15/tip-sort-uniq/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -363,8 +365,23 @@
       
 
       
-        <p>這篇筆記，搜集各方資料所歸納出的寫法，替自己紀錄，並不定時更新或優化。</p>
+        <p>距離前一篇已經四個月之久，因為要補的實在太多，花了一點時間充電 😂，中間有參加IT邦幫忙鐵人賽，寫了30天RxSwift的文章，有時間再把文章做個搬移。</p>
+<p>今天想分享一下處理SwiftLint當中『Sorted Imports』這條規範時，使用的小工具。</p>
 <a id="more"></a>
+
+<h1 id="SwiftLint"><a href="#SwiftLint" class="headerlink" title="SwiftLint"></a>SwiftLint</h1><p>前陣子在公司專案導入<a href="https://github.com/realm/SwiftLint" target="_blank" rel="noopener">SwiftLint</a>，是一款靜態程式分析的工具，檢查程式碼有沒有規範，可以使用已經定義好的規範（參照<a href="https://realm.github.io/SwiftLint/rule-directory.html" target="_blank" rel="noopener">官方文件</a>），也可以自行定義規範。使用這類工具好處就是可以規範團隊的coding style，讓專案的程式更加的優美 🤤</p>
+<p>安裝方式基本上是參照著官方文件，有空再寫文章來分享使用了哪些規範，今天就先講講處理『Sorted Imports』遇到的問題。</p>
+<h1 id="Sorted-Imports"><a href="#Sorted-Imports" class="headerlink" title="Sorted Imports"></a>Sorted Imports</h1><p><a href="https://realm.github.io/SwiftLint/sorted_imports.html" target="_blank" rel="noopener">Sorted Imports</a>規範的是檔案最上方，import third-party時，要按照字母作為排序，但是，Xcode當中似乎沒有這種功能，每次都得手動排實在有點煩，於是我在網路上找得了這個解決方法<a href="https://stackoverflow.com/questions/1905347/a-way-to-automatically-organize-imports-in-xcode" target="_blank" rel="noopener">A way to automatically organize #imports in Xcode</a></p>
+<h1 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h1><ol>
+<li>需要使用Mac中Automator這工具，我們先把它打開</li>
+<li>新增文件，選擇快速動作（Quick Action）</li>
+<li>搜尋『shell』，找到『執行shell工序指令』，點它一下，右邊就會跳出shell區域供我們設定</li>
+<li>在指令區輸入<code>sort | uniq</code></li>
+<li>勾選『輸出會取代所選文字』（output replaces selected text）</li>
+<li>存擋，命名依各位喜好，我是使用『sort&amp;uniq』<br><img src="https://raw.githubusercontent.com/bing-Guo/bing-Guo.github.io/master/images/2020-11-15-1.png" alt=""></li>
+</ol>
+<h1 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h1><p>在Xcode中，把所有的import選起來，<code>右鍵&gt;Service&gt;sort&amp;uniq（依據你的文件命名）</code>就可以了，不過，有時候排序完，第一行會多一些空白，原因不明，這時會再手動刪掉。<br><img src="https://raw.githubusercontent.com/bing-Guo/bing-Guo.github.io/master/images/2020-11-15.png" alt=""></p>
+
       
     </div>
     
@@ -383,8 +400,6 @@
           
             <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
-          
         </div>
       
 
@@ -396,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/29/ios-closure-weak-self/" rel="next" title="Closure的機制，和使用weak跟unowned的時機">
-                <i class="fa fa-chevron-left"></i> Closure的機制，和使用weak跟unowned的時機
+              <a href="/2020/06/07/share-work-second-week/" rel="next" title="轉換跑道後的第二週">
+                <i class="fa fa-chevron-left"></i> 轉換跑道後的第二週
               </a>
             
           </div>
@@ -405,10 +420,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/04/ios-notification-center/" rel="prev" title="Notification Center使用方式">
-                Notification Center使用方式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -474,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -535,6 +555,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SwiftLint"><span class="nav-number">1.</span> <span class="nav-text">SwiftLint</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sorted-Imports"><span class="nav-number">2.</span> <span class="nav-text">Sorted Imports</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解決方法"><span class="nav-number">3.</span> <span class="nav-text">解決方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用方式"><span class="nav-number">4.</span> <span class="nav-text">使用方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -692,9 +728,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://bing-guo.github.io/2020/04/29/xxx-dp-mvvm/';
-          this.page.identifier = '2020/04/29/xxx-dp-mvvm/';
-          this.page.title = '一個MVVM的範例';
+          this.page.url = 'https://bing-guo.github.io/2020/11/15/tip-sort-uniq/';
+          this.page.identifier = '2020/11/15/tip-sort-uniq/';
+          this.page.title = '【小訣竅】Sorted imports';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://myBlog.disqus.com/embed.js';
